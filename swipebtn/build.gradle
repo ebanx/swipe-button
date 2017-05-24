@@ -1,4 +1,9 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+version = '0.1.0'
+group = 'com.ebanx'
 
 android {
     compileSdkVersion 25
@@ -28,4 +33,94 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
+}
+
+if (project.hasProperty("android")) { // Android libraries
+    task sourcesJar(type: Jar) {
+        classifier = 'sources'
+        from android.sourceSets.main.java.srcDirs
+    }
+
+    task javadoc(type: Javadoc) {
+        source = android.sourceSets.main.java.srcDirs
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    }
+} else { // Java libraries
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            name 'SwipeButton'
+            description 'A Button enabled by swipe'
+            url 'https://github.com/ebanx/swipe-button/'
+            inceptionYear '2017'
+
+            packaging 'aar'
+            groupId 'com.ebanx'
+            artifactId 'swipe-button'
+            version '0.1.0'
+
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+            scm {
+                connection 'git@github.com:ebanx/swipe-button.git'
+                url 'https://github.com/ebanx/swipe-button/'
+
+            }
+            developers {
+                developer {
+                    name 'Leandro Borges Ferreira'
+                }
+            }
+        }
+    }
+}
+
+// Configure gradle-bintray-plugin (for publishing releases)
+bintray {
+    configurations = ['archives']
+
+    publish = true
+
+    pkg {
+        repo = 'maven'
+        name = 'swipe-button'
+        userOrg = 'ebanx'
+        licenses = ['Apache-2.0']
+        labels = ['customview', 'spinner']
+        websiteUrl = 'https://github.com/ebanx/swipe-button/'
+        issueTrackerUrl = 'https://github.com/ebanx/swipe-button/issues'
+        vcsUrl = 'https://github.com/ebanx/swipe-button.git'
+        publicDownloadNumbers = true
+    }
+
+}
+
+if (project.hasProperty('bintrayUser') && project.hasProperty('bintrayKey')) {
+    bintray.user = project.bintrayUser
+    bintray.key = project.bintrayKey
+}
+
+repositories {
+    mavenCentral()
 }
