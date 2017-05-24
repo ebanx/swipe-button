@@ -1,4 +1,4 @@
-package com.ebanx.swipebutton;
+package com.ebanx.swipebtn;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
