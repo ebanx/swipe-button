@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main"
+    android:background="#333E48"
+    android:padding="20dp">
+
+
+    <br.com.leandroferreira.swipebutton.SwipeButton
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        />
+
+    <br.com.leandroferreira.swipebutton.EbanxToggleButton
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:padding="2dp"
+        android:background="@drawable/shape_rounded"/>
+
+</LinearLayout>
