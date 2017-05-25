@@ -139,12 +139,6 @@ public class SwipeButton extends RelativeLayout {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN: {
-                        Log.d("Haa", "uhh");
-
-                        return true;
-                    }
-
                     case MotionEvent.ACTION_MOVE: {
                         if (initialX == 0) {
                             initialX = swipeButton.getX();
@@ -173,7 +167,6 @@ public class SwipeButton extends RelativeLayout {
                             }
                         }
                     }
-
                 }
 
                 return false;
