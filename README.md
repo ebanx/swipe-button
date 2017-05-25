@@ -1,4 +1,4 @@
-[ ![Download](https://api.bintray.com/packages/ebanx/maven/swipe-button/images/download.svg) ](https://bintray.com/ebanx/maven/swipe-button/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/ebanx/maven/swipe-button/images/download.svg) ](https://bintray.com/ebanx/maven/swipe-button/_latestVersion) [![Build Status](https://travis-ci.org/ebanx/swipe-button.svg?branch=master)](https://travis-ci.org/ebanx/swipe-button)
 
 # Swipe-Button
 
