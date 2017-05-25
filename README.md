@@ -40,8 +40,11 @@ Add the button in your layout file and customize it the way you like it.
 For bugs, feature requests, and discussion please use [GitHub Issues](https://github.com/ebanx/swipe-button/issues).
 
 ## Credits
-Design: Diego Martins
-Development: [Leandro Borges Ferreira](https://github.com/leandroBorgesFerreira)
+
+ - Design: Diego Martins 
+ - Development: [Leandro Borges Ferreira]
+
+(https://github.com/leandroBorgesFerreira)
 
 ### And that's it! Enjoy!
 
