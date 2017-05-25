@@ -42,9 +42,8 @@ For bugs, feature requests, and discussion please use [GitHub Issues](https://gi
 ## Credits
 
  - Design: Diego Martins 
- - Development: [Leandro Borges Ferreira]
+ - Development: [Leandro Borges Ferreira](https://github.com/leandroBorgesFerreira)
 
-(https://github.com/leandroBorgesFerreira)
 
 ### And that's it! Enjoy!
 
