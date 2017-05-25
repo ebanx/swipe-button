@@ -6,7 +6,10 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -33,34 +36,34 @@ public class SwipeButton extends RelativeLayout {
     private int initialButtonWidth;
     private TextView centerText;
 
-    private boolean first = true;
+    private Drawable disabledDrawable;
+    private Drawable enabledDrawable;
 
     public SwipeButton(Context context) {
         super(context);
 
-        init(context);
+        init(context, null, -1, -1);
     }
 
     public SwipeButton(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        init(context);
+        init(context, attrs, -1, -1);
     }
 
     public SwipeButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        init(context);
+        init(context, attrs, defStyleAttr, -1);
     }
 
     public SwipeButton(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
 
-        init(context);
+        init(context, attrs, defStyleAttr, defStyleRes);
     }
 
-
-    private void init(Context context){
+    private void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes){
         RelativeLayout view = new RelativeLayout(context);
         view.setBackground(ContextCompat.getDrawable(context, R.drawable.shape_rounded));
 
@@ -74,7 +77,6 @@ public class SwipeButton extends RelativeLayout {
 
         final TextView centerText = new TextView(context);
         this.centerText = centerText;
-        centerText.setText("SWIPE");
         centerText.setGravity(Gravity.CENTER);
         centerText.setPadding(0, 50, 0, 50);
 
@@ -89,8 +91,6 @@ public class SwipeButton extends RelativeLayout {
 
         final ImageView swipeButton = new ImageView(context);
 
-        swipeButton.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_lock_open_black_24dp));
-
         swipeButton.setBackground(ContextCompat.getDrawable(context, R.drawable.shape_button));
         swipeButton.setPadding(52, 52, 52, 52);
         swipeButton.setClickable(false);
@@ -104,10 +104,38 @@ public class SwipeButton extends RelativeLayout {
         layoutParamsButton.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
         layoutParamsButton.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
 
-
         addView(swipeButton, layoutParamsButton);
 
-        setOnTouchListener(new OnTouchListener() {
+        if (attrs != null && defStyleAttr == -1 && defStyleRes == -1) {
+            TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SwipeButton,
+                    defStyleAttr, defStyleRes);
+
+            centerText.setText(typedArray.getText(R.styleable.SwipeButton_inner_text));
+            centerText.setTextColor(typedArray.getColor(R.styleable.SwipeButton_inner_text_color,
+                    Color.WHITE));
+
+            float textSize = DimentionUtils.converPixelsToSp(
+                    typedArray.getDimension(R.styleable.SwipeButton_inner_text_size, 0), context);
+
+            if (textSize != 0) {
+                centerText.setTextSize(textSize);
+            } else {
+                centerText.setTextSize(12);
+            }
+
+            disabledDrawable = typedArray.getDrawable(R.styleable.SwipeButton_button_image_disabled);
+            enabledDrawable = typedArray.getDrawable(R.styleable.SwipeButton_button_image_enabled);
+
+            swipeButton.setImageDrawable(disabledDrawable);
+
+            typedArray.recycle();
+        }
+
+        setOnTouchListener(getButtonTouchListener());
+    }
+
+    private OnTouchListener getButtonTouchListener() {
+        return new OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
@@ -127,7 +155,7 @@ public class SwipeButton extends RelativeLayout {
                             swipeButton.setX(event.getX() - swipeButton.getWidth() / 2);
                         }
 
-                        centerText.setAlpha(1 - 1.3f*(swipeButton.getX() + swipeButton.getWidth()) / getWidth());
+                        centerText.setAlpha(1 - 1.3f * (swipeButton.getX() + swipeButton.getWidth()) / getWidth());
 
                         return true;
                     }
@@ -150,10 +178,8 @@ public class SwipeButton extends RelativeLayout {
 
                 return false;
             }
-        });
+        };
     }
-
-
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -193,8 +219,7 @@ public class SwipeButton extends RelativeLayout {
                 super.onAnimationEnd(animation);
 
                 isActive = true;
-                swipeButton.setImageDrawable(ContextCompat.getDrawable(
-                        getContext(), R.drawable.ic_lock_outline_black_24dp));
+                swipeButton.setImageDrawable(enabledDrawable);
 
             }
         });
@@ -244,8 +269,7 @@ public class SwipeButton extends RelativeLayout {
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
                 isActive = false;
-                swipeButton.setImageDrawable(
-                        ContextCompat.getDrawable(getContext(), R.drawable.ic_lock_open_black_24dp));
+                swipeButton.setImageDrawable(disabledDrawable);
             }
         });
 
@@ -256,8 +280,4 @@ public class SwipeButton extends RelativeLayout {
         animatorSet.playTogether(objectAnimator, widthAnimator);
         animatorSet.start();
     }
-
-
-
-
 }

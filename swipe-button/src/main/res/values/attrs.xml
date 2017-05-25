@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SwipeButton">
+        <attr name="inner_text" format="string"/>
+        <attr name="inner_text_color" format="color"/>
+        <attr name="inner_text_size" format="dimension"/>
+        <attr name="button_image_disabled" format="reference"/>
+        <attr name="button_image_enabled" format="reference"/>
+    </declare-styleable>
+</resources>
