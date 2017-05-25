@@ -1,3 +1,5 @@
+[ ![Download](https://api.bintray.com/packages/ebanx/maven/swipe-button/images/download.svg) ](https://bintray.com/ebanx/maven/swipe-button/_latestVersion)
+
 # Swipe-Button
 
 Library of a button activated by swipe. 
