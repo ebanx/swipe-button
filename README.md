@@ -8,8 +8,6 @@ Library of a button activated by swipe.
 
 ![enter image description here](https://lh3.googleusercontent.com/-pG1QBfiSaIo/WSbswf9TR8I/AAAAAAAAACQ/BITTeBVyhvQHM5o2hTW7x4qsbfW3OJbCQCLcB/s0/button+movie.gif "button movie.gif")
 
-> Written with [StackEdit](https://stackedit.io/).
-
 ## Instalation
 
     compile 'com.ebanx:swipe-button:0.1.0'
@@ -46,3 +44,5 @@ Design: Diego Martins
 Development: [Leandro Borges Ferreira](https://github.com/leandroBorgesFerreira)
 
 ### And that's it! Enjoy!
+
+> Written with [StackEdit](https://stackedit.io/).
