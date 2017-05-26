@@ -138,7 +138,7 @@ public class SwipeButton extends RelativeLayout {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
             switch (event.getAction()) {
-                case MotionEvent.ACTION_MOVE: {
+                case MotionEvent.ACTION_MOVE:
                     if (initialX == 0) {
                         initialX = slidingButton.getX();
                     }
@@ -151,9 +151,7 @@ public class SwipeButton extends RelativeLayout {
                     centerText.setAlpha(1 - 1.3f * (slidingButton.getX() + slidingButton.getWidth()) / getWidth());
 
                     return true;
-                }
-
-                case MotionEvent.ACTION_UP: {
+                case MotionEvent.ACTION_UP:
                     if (active) {
                         collapseButton();
                     } else {
@@ -168,7 +166,6 @@ public class SwipeButton extends RelativeLayout {
 
                     return true;
                 }
-            }
 
             return false;
             }
