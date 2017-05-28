@@ -2,7 +2,7 @@
 
 # Swipe-Button
 
-Library of a android button activated by swipe. 
+Library of an android button activated by swipe. 
 
 - Easy to use. 
 - Make your app look great
