@@ -15,7 +15,7 @@ android:
 before_install: chmod +x gradle/buildWithTravis.sh
 script: 
   - ./gradle/buildWithTravis.sh
-  - ./gnag-build.sh
+  #- ./gnag-build.sh
 after_failure: lynx -dump app/build/outputs/gnag/gnag.html
 env:
   global:
