@@ -28,6 +28,10 @@ android {
 
     lintOptions {
         abortOnError false
+
+        // Bug in the android sdk https://github.com/square/okio/issues/58
+        // remove this on android O (it will include the missing packages).
+        warning 'InvalidPackage'
     }
 }
 
