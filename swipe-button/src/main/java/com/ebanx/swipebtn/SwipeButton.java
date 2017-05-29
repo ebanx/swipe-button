@@ -77,7 +77,6 @@ public class SwipeButton extends RelativeLayout {
         final TextView centerText = new TextView(context);
         this.centerText = centerText;
         centerText.setGravity(Gravity.CENTER);
-        centerText.setPadding(0, 50, 0, 50);
 
         LayoutParams layoutParams = new LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -91,8 +90,6 @@ public class SwipeButton extends RelativeLayout {
         final ImageView swipeButton = new ImageView(context);
 
         swipeButton.setBackground(ContextCompat.getDrawable(context, R.drawable.shape_button));
-        swipeButton.setPadding(52, 52, 52, 52);
-        swipeButton.setClickable(false);
 
         this.slidingButton = swipeButton;
 
@@ -124,8 +121,36 @@ public class SwipeButton extends RelativeLayout {
 
             disabledDrawable = typedArray.getDrawable(R.styleable.SwipeButton_button_image_disabled);
             enabledDrawable = typedArray.getDrawable(R.styleable.SwipeButton_button_image_enabled);
+            float innerTextLeftPadding = typedArray.getDimension(
+                    R.styleable.SwipeButton_inner_text_left_padding, 0);
+            float innerTextTopPadding = typedArray.getDimension(
+                    R.styleable.SwipeButton_inner_text_top_padding, 0);
+            float innerTextRightPadding = typedArray.getDimension(
+                    R.styleable.SwipeButton_inner_text_right_padding, 0);
+            float innerTextBottomPadding = typedArray.getDimension(
+                    R.styleable.SwipeButton_inner_text_bottom_padding, 0);
+
+            centerText.setPadding((int) innerTextLeftPadding,
+                    (int)innerTextTopPadding,
+                    (int) innerTextRightPadding,
+                    (int) innerTextBottomPadding);
+
 
             swipeButton.setImageDrawable(disabledDrawable);
+
+            float buttonLeftPadding = typedArray.getDimension(
+                    R.styleable.SwipeButton_button_left_padding, 0);
+            float buttonTopPadding = typedArray.getDimension(
+                    R.styleable.SwipeButton_button_top_padding, 0);
+            float buttonRightPadding = typedArray.getDimension(
+                    R.styleable.SwipeButton_button_right_padding, 0);
+            float buttonBottomPadding = typedArray.getDimension(
+                    R.styleable.SwipeButton_button_bottom_padding, 0);
+
+            swipeButton.setPadding((int) buttonLeftPadding,
+                    (int) buttonTopPadding,
+                    (int) buttonRightPadding,
+                    (int) buttonBottomPadding);
 
             typedArray.recycle();
         }
@@ -138,6 +163,8 @@ public class SwipeButton extends RelativeLayout {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
             switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    return true;
                 case MotionEvent.ACTION_MOVE:
                     if (initialX == 0) {
                         initialX = slidingButton.getX();
