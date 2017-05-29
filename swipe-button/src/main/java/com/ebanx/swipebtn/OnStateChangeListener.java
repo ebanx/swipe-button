@@ -1,5 +1,5 @@
 package com.ebanx.swipebtn;
 
-public interface StateChangeListener {
+public interface OnStateChangeListener {
     void onStateChange(boolean active);
 }
