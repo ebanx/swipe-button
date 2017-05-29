@@ -37,6 +37,8 @@ public class SwipeButton extends RelativeLayout {
     private Drawable disabledDrawable;
     private Drawable enabledDrawable;
 
+    private StateChangeListener stateChangeListener;
+
     public SwipeButton(Context context) {
         super(context);
 
@@ -60,6 +62,10 @@ public class SwipeButton extends RelativeLayout {
         super(context, attrs, defStyleAttr, defStyleRes);
 
         init(context, attrs, defStyleAttr, defStyleRes);
+    }
+
+    public void setStateChangeListener(StateChangeListener stateChangeListener) {
+        this.stateChangeListener = stateChangeListener;
     }
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -233,7 +239,7 @@ public class SwipeButton extends RelativeLayout {
 
                 active = true;
                 slidingButton.setImageDrawable(enabledDrawable);
-
+                stateChangeListener.onStateChange(active);
             }
         });
 
@@ -283,6 +289,7 @@ public class SwipeButton extends RelativeLayout {
                 super.onAnimationEnd(animation);
                 active = false;
                 slidingButton.setImageDrawable(disabledDrawable);
+                stateChangeListener.onStateChange(active);
             }
         });
 
@@ -290,7 +297,10 @@ public class SwipeButton extends RelativeLayout {
                 centerText, "alpha", 1);
 
         AnimatorSet animatorSet = new AnimatorSet();
+
         animatorSet.playTogether(objectAnimator, widthAnimator);
         animatorSet.start();
     }
+
+
 }
