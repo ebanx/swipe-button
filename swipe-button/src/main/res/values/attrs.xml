@@ -8,12 +8,15 @@
         <attr name="inner_text_right_padding" format="dimension"/>
         <attr name="inner_text_top_padding" format="dimension"/>
         <attr name="inner_text_bottom_padding" format="dimension"/>
+        <attr name="inner_text_background" format="reference"/>
         <attr name="button_image_disabled" format="reference"/>
         <attr name="button_image_enabled" format="reference"/>
         <attr name="button_left_padding" format="dimension"/>
         <attr name="button_right_padding" format="dimension"/>
         <attr name="button_top_padding" format="dimension"/>
         <attr name="button_bottom_padding" format="dimension"/>
+        <attr name="button_background" format="reference"/>
+
 
     </declare-styleable>
 </resources>
