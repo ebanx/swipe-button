@@ -12,7 +12,7 @@ Library of an android button activated by swipe.
 
 ## Instalation
 
-    compile 'com.ebanx:swipe-button:0.3.0'
+    compile 'com.ebanx:swipe-button:0.2.1'
 
 ## How to use
 
@@ -54,6 +54,11 @@ You can set the size of the fixed part of the button by setting the text size of
  - button_image_enabled: Icon of the button when disabled. This is the initial expanded state. 
  - button_[direction]_padding: Sets the padding of the button the slide with the touch. You can set how big the button will be by setting the image and the padding
 
+## CodePen
+If you would like to see a front-end version of this button you can check a codepen in this link:
+
+https://codepen.io/gpressutto5/pen/NjJobG
+
 ## Bugs and features
 For bugs, feature requests, and discussion please use [GitHub Issues](https://github.com/ebanx/swipe-button/issues).
 
@@ -61,6 +66,7 @@ For bugs, feature requests, and discussion please use [GitHub Issues](https://gi
 
  - Design: [Diego Martins](https://dribbble.com/diegomartins) 
  - Development: [Leandro Borges Ferreira](https://github.com/leandroBorgesFerreira)
+ - Codepen: [Guilherme Pressuto](https://github.com/gpressutto5)
 
 
 ### And that's it! Enjoy!
