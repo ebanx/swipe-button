@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "State: " + active, Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     @Override
