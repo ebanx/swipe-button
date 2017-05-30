@@ -12,7 +12,7 @@ Library of an android button activated by swipe.
 
 ## Instalation
 
-    compile 'com.ebanx:swipe-button:0.2.1'
+    compile 'com.ebanx:swipe-button:0.3.0'
 
 ## How to use
 
