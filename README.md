@@ -12,7 +12,7 @@ Library of an android button activated by swipe.
 
 ## Instalation
 
-    compile 'com.ebanx:swipe-button:0.3.0'
+    compile 'com.ebanx:swipe-button:0.2.1'
 
 ## How to use
 
@@ -59,7 +59,7 @@ For bugs, feature requests, and discussion please use [GitHub Issues](https://gi
 
 ## Credits
 
- - Design: Diego Martins 
+ - Design: [Diego Martins](https://dribbble.com/diegomartins) 
  - Development: [Leandro Borges Ferreira](https://github.com/leandroBorgesFerreira)
 
 
