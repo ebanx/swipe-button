@@ -12,7 +12,7 @@ Library of an android button activated by swipe.
 - Better UX in sensitive button
 
 
-## Instalation
+## Installation
 
     compile 'com.ebanx:swipe-button:0.3.0'
 
