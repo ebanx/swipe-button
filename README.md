@@ -10,7 +10,7 @@ Library of an android button activated by swipe.
 
 ![enter image description here](https://lh3.googleusercontent.com/-pG1QBfiSaIo/WSbswf9TR8I/AAAAAAAAACQ/BITTeBVyhvQHM5o2hTW7x4qsbfW3OJbCQCLcB/s0/button+movie.gif "button movie.gif")
 
-## Instalation
+## Installation
 
     compile 'com.ebanx:swipe-button:0.3.0'
 
