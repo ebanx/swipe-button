@@ -8,7 +8,7 @@
 Library of an android button activated by swipe. 
 
 - Easy to use. 
-- Make your app look great
+- Makes your app look great
 - Better UX in sensitive button
 
 
