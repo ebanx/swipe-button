@@ -63,6 +63,10 @@ public class SwipeButton extends RelativeLayout {
 
         init(context, attrs, defStyleAttr, defStyleRes);
     }
+    
+    public boolean isActive() {
+        return active;
+    }
 
     public void setOnStateChangeListener(OnStateChangeListener onStateChangeListener) {
         this.onStateChangeListener = onStateChangeListener;
