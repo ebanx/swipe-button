@@ -256,7 +256,10 @@ public class SwipeButton extends RelativeLayout {
 
                 active = true;
                 slidingButton.setImageDrawable(enabledDrawable);
-                onStateChangeListener.onStateChange(active);
+
+                if(onStateChangeListener != null) {
+                    onStateChangeListener.onStateChange(active);
+                }
             }
         });
 
@@ -306,7 +309,10 @@ public class SwipeButton extends RelativeLayout {
                 super.onAnimationEnd(animation);
                 active = false;
                 slidingButton.setImageDrawable(disabledDrawable);
-                onStateChangeListener.onStateChange(active);
+
+                if(onStateChangeListener != null) {
+                    onStateChangeListener.onStateChange(active);
+                }
             }
         });
 
