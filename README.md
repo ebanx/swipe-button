@@ -14,7 +14,7 @@ Library of an android button activated by swipe.
 
 ## Installation
 
-    compile 'com.ebanx:swipe-button:0.3.0'
+    compile 'com.ebanx:swipe-button:[latestVersion]'
 
 ## How to use
 
@@ -45,6 +45,17 @@ You can set the size of the moving part of the button by changing the icon insid
 
 ### Setting the text part size
 You can set the size of the fixed part of the button by setting the text size of the setting the padding in this part.
+
+### Listening for changes
+You can set a listener for state changes
+
+    SwipeButton swipeButton = (SwipeButton) findViewById(R.id.swipe_btn);
+            swipeButton.setOnStateChangeListener(new OnStateChangeListener() {
+                @Override 
+                public void onStateChange(boolean active) {
+                    Toast.makeText(MainActivity.this, "State: " + active, Toast.LENGTH_SHORT).show();
+                } 
+            }); 
 
 ## Configure XML
 
