@@ -70,7 +70,9 @@ You can set a listener for state changes
 ## CodePen
 If you would like to see a front-end version of this button you can check a codepen in this link:
 
-https://codepen.io/gpressutto5/pen/NjJobG
+http://codepen.io/gpressutto5/pen/NjJobG
+https://codepen.io/issamu/pen/NgPOKb (with Safari fix)
+
 
 ## Bugs and features
 For bugs, feature requests, and discussion please use [GitHub Issues](https://github.com/ebanx/swipe-button/issues).
@@ -80,7 +82,7 @@ For bugs, feature requests, and discussion please use [GitHub Issues](https://gi
  - Design: [Diego Martins](https://dribbble.com/diegomartins) 
  - Development: [Leandro Borges Ferreira](https://github.com/leandroBorgesFerreira)
  - Codepen: [Guilherme Pressuto](https://github.com/gpressutto5)
-
+ - Codepen: [João Issamu Francisco](https://github.com/joaoissamu)
 
 ### And that's it! Enjoy!
 
