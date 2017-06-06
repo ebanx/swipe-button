@@ -115,7 +115,7 @@ public class SwipeButton extends RelativeLayout {
 
             Drawable drawable = typedArray.getDrawable(R.styleable.SwipeButton_inner_text_background);
 
-            if(drawable != null) {
+            if (drawable != null) {
                 background.setBackground(drawable);
             } else {
                 background.setBackground(ContextCompat.getDrawable(context, R.drawable.shape_rounded));
@@ -146,7 +146,7 @@ public class SwipeButton extends RelativeLayout {
                     R.styleable.SwipeButton_inner_text_bottom_padding, 0);
 
             centerText.setPadding((int) innerTextLeftPadding,
-                    (int)innerTextTopPadding,
+                    (int) innerTextTopPadding,
                     (int) innerTextRightPadding,
                     (int) innerTextBottomPadding);
 
@@ -266,7 +266,7 @@ public class SwipeButton extends RelativeLayout {
                 active = true;
                 slidingButton.setImageDrawable(enabledDrawable);
 
-                if(onStateChangeListener != null) {
+                if (onStateChangeListener != null) {
                     onStateChangeListener.onStateChange(active);
                 }
             }
@@ -319,7 +319,7 @@ public class SwipeButton extends RelativeLayout {
                 active = false;
                 slidingButton.setImageDrawable(disabledDrawable);
 
-                if(onStateChangeListener != null) {
+                if (onStateChangeListener != null) {
                     onStateChangeListener.onStateChange(active);
                 }
             }
