@@ -16,12 +16,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         SwipeButton swipeButton = (SwipeButton) findViewById(R.id.swipe_btn);
-        swipeButton.setOnStateChangeListener(new OnStateChangeListener() {
-            @Override
-            public void onStateChange(boolean active) {
-                Toast.makeText(MainActivity.this, "State: " + active, Toast.LENGTH_SHORT).show();
-            }
-        });
+//        swipeButton.setOnStateChangeListener(new OnStateChangeListener() {
+//            @Override
+//            public void onStateChange(boolean active) {
+//                Toast.makeText(MainActivity.this, "State: " + active, Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     @Override

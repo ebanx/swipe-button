@@ -196,9 +196,18 @@ public class SwipeButton extends RelativeLayout {
                     if (event.getX() > initialX + slidingButton.getWidth() / 2 &&
                             event.getX() + slidingButton.getWidth() / 2 < getWidth()) {
                         slidingButton.setX(event.getX() - slidingButton.getWidth() / 2);
+                        centerText.setAlpha(1 - 1.3f * (slidingButton.getX() + slidingButton.getWidth()) / getWidth());
                     }
 
-                    centerText.setAlpha(1 - 1.3f * (slidingButton.getX() + slidingButton.getWidth()) / getWidth());
+                    if  (event.getX() + slidingButton.getWidth() / 2 > getWidth() &&
+                            slidingButton.getX() + slidingButton.getWidth() / 2 < getWidth()) {
+                        slidingButton.setX(getWidth() - slidingButton.getWidth());
+                    }
+
+                    if  (event.getX() < slidingButton.getWidth() / 2 &&
+                            slidingButton.getX() > 0) {
+                        slidingButton.setX(0);
+                    }
 
                     return true;
                 case MotionEvent.ACTION_UP:

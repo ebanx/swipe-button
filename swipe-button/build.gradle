@@ -3,12 +3,12 @@ apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'gnag'
 
-version = '0.4.1'
+version = '0.4.2'
 group = 'com.ebanx'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "25.0.3"
 
     defaultConfig {
         minSdkVersion 16
@@ -103,7 +103,7 @@ install {
             packaging 'aar'
             groupId 'com.ebanx'
             artifactId 'swipe-button'
-            version '0.4.1'
+            version '0.4.2'
 
             licenses {
                 license {
