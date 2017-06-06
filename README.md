@@ -70,9 +70,8 @@ You can set a listener for state changes
 ## CodePen
 If you would like to see a front-end version of this button you can check a codepen in this link:
 
-http://codepen.io/gpressutto5/pen/NjJobG
-https://codepen.io/issamu/pen/NgPOKb (with Safari fix)
-
+ - http://codepen.io/gpressutto5/pen/NjJobG
+ - https://codepen.io/issamu/pen/NgPOKb (with Safari fix)
 
 ## Bugs and features
 For bugs, feature requests, and discussion please use [GitHub Issues](https://github.com/ebanx/swipe-button/issues).
