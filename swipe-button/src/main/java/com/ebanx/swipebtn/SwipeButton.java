@@ -31,7 +31,6 @@ public class SwipeButton extends RelativeLayout {
     private ImageView swipeButton;
     private float initialX;
     private boolean active;
-    private int initialButtonWidth;
     private TextView centerText;
     private ViewGroup background;
 
@@ -270,7 +269,6 @@ public class SwipeButton extends RelativeLayout {
                         collapseButton();
                     } else {
                         if (swipeButton.getX() + swipeButton.getWidth() > getWidth() * 0.85) {
-                            initialButtonWidth = swipeButton.getWidth();
                             expandButton();
                         } else {
                             moveButtonBack();
@@ -355,7 +353,7 @@ public class SwipeButton extends RelativeLayout {
     private void collapseButton() {
         final ValueAnimator widthAnimator = ValueAnimator.ofInt(
                 swipeButton.getWidth(),
-                initialButtonWidth);
+                swipeButton.getHeight());
 
         widthAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
