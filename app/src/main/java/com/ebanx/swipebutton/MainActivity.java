@@ -1,6 +1,7 @@
 package com.ebanx.swipebutton;
 
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.widget.Toast;
@@ -16,6 +17,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         SwipeButton swipeButton = (SwipeButton) findViewById(R.id.swipe_btn);
+
+        swipeButton.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_button2));
+        swipeButton.setSlidingButtonBackground(ContextCompat.getDrawable(this, R.drawable.shape_rounded2));
+        swipeButton.setDisabledDrawable(ContextCompat.getDrawable(this, R.drawable.ic_lock_outline_black_24dp));
+        swipeButton.setText("lala");
+        swipeButton.setInnerTextPadding(10, 10, 10, 10);
+
 //        swipeButton.setOnStateChangeListener(new OnStateChangeListener() {
 //            @Override
 //            public void onStateChange(boolean active) {

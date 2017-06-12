@@ -16,6 +16,10 @@
         <attr name="button_top_padding" format="dimension"/>
         <attr name="button_bottom_padding" format="dimension"/>
         <attr name="button_background" format="reference"/>
+        <attr name="initial_state" format="enum">
+            <enum name="enabled" value="0"/>
+            <enum name="disabled" value="1"/>
+        </attr>
 
 
     </declare-styleable>

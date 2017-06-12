@@ -28,16 +28,20 @@ import android.widget.TextView;
 
 public class SwipeButton extends RelativeLayout {
 
-    private ImageView slidingButton;
+    private ImageView swipeButton;
     private float initialX;
     private boolean active;
     private int initialButtonWidth;
     private TextView centerText;
+    private ViewGroup background;
 
     private Drawable disabledDrawable;
     private Drawable enabledDrawable;
 
     private OnStateChangeListener onStateChangeListener;
+
+    private static final int ENABLED = 0;
+    private static final int DISABLED = 1;
 
     public SwipeButton(Context context) {
         super(context);
@@ -68,12 +72,48 @@ public class SwipeButton extends RelativeLayout {
         return active;
     }
 
+    public void setText(String text) {
+        centerText.setText(text);
+    }
+
+    public void setBackground(Drawable drawable) {
+        background.setBackground(drawable);
+    }
+
+    public void setSlidingButtonBackground(Drawable drawable) {
+        background.setBackground(drawable);
+    }
+
+    public void setDisabledDrawable(Drawable drawable) {
+        disabledDrawable = drawable;
+
+        if (!active) {
+            swipeButton.setImageDrawable(drawable);
+        }
+    }
+
+    public void setEnabledDrawable(Drawable drawable) {
+        enabledDrawable = drawable;
+
+        if (active) {
+            swipeButton.setImageDrawable(drawable);
+        }
+    }
+
     public void setOnStateChangeListener(OnStateChangeListener onStateChangeListener) {
         this.onStateChangeListener = onStateChangeListener;
     }
 
+    public void setInnerTextPadding(int left, int top, int right, int bottom) {
+        centerText.setPadding(left, top, right, bottom);
+    }
+
+    public void setSwipeButtonPadding(int left, int top, int right, int bottom) {
+        swipeButton.setPadding(left, top, right, bottom);
+    }
+
     private void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        RelativeLayout background = new RelativeLayout(context);
+        background = new RelativeLayout(context);
 
         LayoutParams layoutParamsView = new LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -91,23 +131,12 @@ public class SwipeButton extends RelativeLayout {
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
 
-
         layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 
         background.addView(centerText, layoutParams);
 
         final ImageView swipeButton = new ImageView(context);
-
-        this.slidingButton = swipeButton;
-
-        LayoutParams layoutParamsButton = new LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
-
-        layoutParamsButton.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
-        layoutParamsButton.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
-
-        addView(swipeButton, layoutParamsButton);
+        this.swipeButton = swipeButton;
 
         if (attrs != null && defStyleAttr == -1 && defStyleRes == -1) {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SwipeButton,
@@ -144,6 +173,32 @@ public class SwipeButton extends RelativeLayout {
                     R.styleable.SwipeButton_inner_text_right_padding, 0);
             float innerTextBottomPadding = typedArray.getDimension(
                     R.styleable.SwipeButton_inner_text_bottom_padding, 0);
+
+            int initialState = typedArray.getInt(R.styleable.SwipeButton_initial_state, DISABLED);
+
+            if (initialState == ENABLED) {
+                LayoutParams layoutParamsButton = new LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                layoutParamsButton.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
+                layoutParamsButton.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
+
+                addView(swipeButton, layoutParamsButton);
+
+                active = true;
+            } else {
+                LayoutParams layoutParamsButton = new LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                layoutParamsButton.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
+                layoutParamsButton.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
+
+                addView(swipeButton, layoutParamsButton);
+
+                active = false;
+            }
 
             centerText.setPadding((int) innerTextLeftPadding,
                     (int) innerTextTopPadding,
@@ -190,23 +245,23 @@ public class SwipeButton extends RelativeLayout {
                     return true;
                 case MotionEvent.ACTION_MOVE:
                     if (initialX == 0) {
-                        initialX = slidingButton.getX();
+                        initialX = swipeButton.getX();
                     }
 
-                    if (event.getX() > initialX + slidingButton.getWidth() / 2 &&
-                            event.getX() + slidingButton.getWidth() / 2 < getWidth()) {
-                        slidingButton.setX(event.getX() - slidingButton.getWidth() / 2);
-                        centerText.setAlpha(1 - 1.3f * (slidingButton.getX() + slidingButton.getWidth()) / getWidth());
+                    if (event.getX() > initialX + swipeButton.getWidth() / 2 &&
+                            event.getX() + swipeButton.getWidth() / 2 < getWidth()) {
+                        swipeButton.setX(event.getX() - swipeButton.getWidth() / 2);
+                        centerText.setAlpha(1 - 1.3f * (swipeButton.getX() + swipeButton.getWidth()) / getWidth());
                     }
 
-                    if  (event.getX() + slidingButton.getWidth() / 2 > getWidth() &&
-                            slidingButton.getX() + slidingButton.getWidth() / 2 < getWidth()) {
-                        slidingButton.setX(getWidth() - slidingButton.getWidth());
+                    if  (event.getX() + swipeButton.getWidth() / 2 > getWidth() &&
+                            swipeButton.getX() + swipeButton.getWidth() / 2 < getWidth()) {
+                        swipeButton.setX(getWidth() - swipeButton.getWidth());
                     }
 
-                    if  (event.getX() < slidingButton.getWidth() / 2 &&
-                            slidingButton.getX() > 0) {
-                        slidingButton.setX(0);
+                    if  (event.getX() < swipeButton.getWidth() / 2 &&
+                            swipeButton.getX() > 0) {
+                        swipeButton.setX(0);
                     }
 
                     return true;
@@ -214,9 +269,8 @@ public class SwipeButton extends RelativeLayout {
                     if (active) {
                         collapseButton();
                     } else {
-                        initialButtonWidth = slidingButton.getWidth();
-
-                        if (slidingButton.getX() + slidingButton.getWidth() > getWidth() * 0.85) {
+                        if (swipeButton.getX() + swipeButton.getWidth() > getWidth() * 0.85) {
+                            initialButtonWidth = swipeButton.getWidth();
                             expandButton();
                         } else {
                             moveButtonBack();
@@ -233,26 +287,26 @@ public class SwipeButton extends RelativeLayout {
 
     private void expandButton() {
         final ValueAnimator positionAnimator =
-                ValueAnimator.ofFloat(slidingButton.getX(), 0);
+                ValueAnimator.ofFloat(swipeButton.getX(), 0);
         positionAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 float x = (Float) positionAnimator.getAnimatedValue();
-                slidingButton.setX(x);
+                swipeButton.setX(x);
             }
         });
 
 
         final ValueAnimator widthAnimator = ValueAnimator.ofInt(
-                slidingButton.getWidth(),
+                swipeButton.getWidth(),
                 getWidth());
 
         widthAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                ViewGroup.LayoutParams params = slidingButton.getLayoutParams();
+                ViewGroup.LayoutParams params = swipeButton.getLayoutParams();
                 params.width = (Integer) widthAnimator.getAnimatedValue();
-                slidingButton.setLayoutParams(params);
+                swipeButton.setLayoutParams(params);
             }
         });
 
@@ -264,7 +318,7 @@ public class SwipeButton extends RelativeLayout {
                 super.onAnimationEnd(animation);
 
                 active = true;
-                slidingButton.setImageDrawable(enabledDrawable);
+                swipeButton.setImageDrawable(enabledDrawable);
 
                 if (onStateChangeListener != null) {
                     onStateChangeListener.onStateChange(active);
@@ -278,13 +332,13 @@ public class SwipeButton extends RelativeLayout {
 
     private void moveButtonBack() {
         final ValueAnimator positionAnimator =
-                ValueAnimator.ofFloat(slidingButton.getX(), 0);
+                ValueAnimator.ofFloat(swipeButton.getX(), 0);
         positionAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
         positionAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 float x = (Float) positionAnimator.getAnimatedValue();
-                slidingButton.setX(x);
+                swipeButton.setX(x);
             }
         });
 
@@ -300,15 +354,15 @@ public class SwipeButton extends RelativeLayout {
 
     private void collapseButton() {
         final ValueAnimator widthAnimator = ValueAnimator.ofInt(
-                slidingButton.getWidth(),
+                swipeButton.getWidth(),
                 initialButtonWidth);
 
         widthAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                ViewGroup.LayoutParams params =  slidingButton.getLayoutParams();
+                ViewGroup.LayoutParams params =  swipeButton.getLayoutParams();
                 params.width = (Integer) widthAnimator.getAnimatedValue();
-                slidingButton.setLayoutParams(params);
+                swipeButton.setLayoutParams(params);
             }
         });
 
@@ -317,7 +371,7 @@ public class SwipeButton extends RelativeLayout {
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
                 active = false;
-                slidingButton.setImageDrawable(disabledDrawable);
+                swipeButton.setImageDrawable(disabledDrawable);
 
                 if (onStateChangeListener != null) {
                     onStateChangeListener.onStateChange(active);
