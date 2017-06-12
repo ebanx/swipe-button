@@ -39,6 +39,7 @@ Add the button in your layout file and customize it the way you like it.
         app:button_top_padding="20dp"
         app:button_bottom_padding="20dp"
         app:button_background="@drawable/shape_button"
+        app:initial_state="disabled"
         />
 ### Setting the sliding button size
 You can set the size of the moving part of the button by changing the icon inside it or changing the padding in the button.
