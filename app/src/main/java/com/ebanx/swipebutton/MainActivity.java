@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SwipeButton swipeButton = (SwipeButton) findViewById(R.id.swipe_btn);
+        SwipeButton swipeButton = (SwipeButton) findViewById(R.id.swipe_btn_disabled);
 
         swipeButton.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_button2));
         swipeButton.setSlidingButtonBackground(ContextCompat.getDrawable(this, R.drawable.shape_rounded2));
