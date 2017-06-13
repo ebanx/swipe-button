@@ -183,6 +183,8 @@ public class SwipeButton extends RelativeLayout {
                 layoutParamsButton.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
                 layoutParamsButton.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
 
+                swipeButton.setImageDrawable(enabledDrawable);
+
                 addView(swipeButton, layoutParamsButton);
 
                 active = true;
@@ -193,6 +195,8 @@ public class SwipeButton extends RelativeLayout {
 
                 layoutParamsButton.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
                 layoutParamsButton.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
+
+                swipeButton.setImageDrawable(disabledDrawable);
 
                 addView(swipeButton, layoutParamsButton);
 
@@ -212,8 +216,6 @@ public class SwipeButton extends RelativeLayout {
             } else {
                 swipeButton.setBackground(ContextCompat.getDrawable(context, R.drawable.shape_button));
             }
-
-            swipeButton.setImageDrawable(disabledDrawable);
 
             float buttonLeftPadding = typedArray.getDimension(
                     R.styleable.SwipeButton_button_left_padding, 0);
