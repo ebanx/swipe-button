@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
         swipeButton.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_button2));
         swipeButton.setSlidingButtonBackground(ContextCompat.getDrawable(this, R.drawable.shape_rounded2));
-        swipeButton.setText("lala");
         swipeButton.setInnerTextPadding(10, 10, 10, 10);
 
 //        swipeButton.setOnStateChangeListener(new OnStateChangeListener() {
