@@ -13,6 +13,7 @@ android:
   - android-25
   - android-22
   - extra-android-m2repository
+  - sys-img-armeabi-v7a-android-22
 before_install: chmod +x gradle/buildWithTravis.sh
 before_script:
   - android list targets
