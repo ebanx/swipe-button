@@ -29,7 +29,7 @@
         app:button_top_padding="20dp"
         app:button_bottom_padding="20dp"
         app:button_background="@drawable/shape_button"
-        app:initial_state="disabled"
+        app:initial_state="enabled"
         />
 
 </LinearLayout>
