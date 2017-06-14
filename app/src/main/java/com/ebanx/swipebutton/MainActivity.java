@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final SwipeButton swipeButton = (SwipeButton) findViewById(R.id.swipe_btn_enabled);
-
+      
         swipeButton.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_button2));
         swipeButton.setSlidingButtonBackground(ContextCompat.getDrawable(this, R.drawable.shape_rounded2));
         swipeButton.setInnerTextPadding(10, 10, 10, 10);
