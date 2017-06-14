@@ -1,57 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    tools:context=".MainActivity"
-    tools:showIn="@layout/activity_main"
     android:background="#333E48"
-    android:padding="20dp">
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main">
 
     <com.ebanx.swipebtn.SwipeButton
         android:id="@+id/swipe_btn_disabled"
         android:layout_width="match_parent"
         android:layout_height="110dp"
-        android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        app:inner_text="SWIPE"
-        app:inner_text_color="@android:color/white"
-        app:inner_text_size="16sp"
-        app:inner_text_top_padding="18dp"
-        app:inner_text_bottom_padding="18dp"
-        app:inner_text_background="@drawable/shape_rounded"
+        android:layout_marginStart="20dp"
+        app:button_background="@drawable/shape_button"
+        app:button_bottom_padding="20dp"
         app:button_image_disabled="@drawable/ic_lock_open_black_24dp"
         app:button_image_enabled="@drawable/ic_lock_outline_black_24dp"
         app:button_left_padding="20dp"
         app:button_right_padding="20dp"
         app:button_top_padding="20dp"
-        app:button_bottom_padding="20dp"
-        app:button_background="@drawable/shape_button"
         app:initial_state="disabled"
-        />
+        app:inner_text="SWIPE"
+        app:inner_text_background="@drawable/shape_rounded"
+        app:inner_text_bottom_padding="18dp"
+        app:inner_text_color="@android:color/white"
+        app:inner_text_size="16sp"
+        app:inner_text_top_padding="18dp" />
 
     <com.ebanx.swipebtn.SwipeButton
         android:id="@+id/swipe_btn_enabled"
         android:layout_width="match_parent"
         android:layout_height="110dp"
-        android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        app:inner_text="SWIPE"
-        app:inner_text_color="@android:color/white"
-        app:inner_text_size="16sp"
-        app:inner_text_top_padding="18dp"
-        app:inner_text_bottom_padding="18dp"
-        app:inner_text_background="@drawable/shape_rounded"
+        android:layout_marginStart="20dp"
+        app:button_background="@drawable/shape_button"
+        app:button_bottom_padding="20dp"
         app:button_image_disabled="@drawable/ic_lock_open_black_24dp"
         app:button_image_enabled="@drawable/ic_lock_outline_black_24dp"
         app:button_left_padding="20dp"
         app:button_right_padding="20dp"
         app:button_top_padding="20dp"
-        app:button_bottom_padding="20dp"
-        app:button_background="@drawable/shape_button"
         app:initial_state="enabled"
-        />
+        app:inner_text="SWIPE"
+        app:inner_text_background="@drawable/shape_rounded"
+        app:inner_text_bottom_padding="18dp"
+        app:inner_text_color="@android:color/white"
+        app:inner_text_size="16sp"
+        app:inner_text_top_padding="18dp" />
+
+    <Button
+        android:id="@+id/change_state_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Toggle State" />
 
 </LinearLayout>
