@@ -91,6 +91,12 @@ public class SwipeButton extends RelativeLayout {
         }
     }
 
+    public void setButtonBackground(Drawable buttonBackground) {
+        if (buttonBackground != null) {
+            swipeButton.setBackground(buttonBackground);
+        }
+    }
+
     public void setEnabledDrawable(Drawable drawable) {
         enabledDrawable = drawable;
 
@@ -394,12 +400,6 @@ public class SwipeButton extends RelativeLayout {
             collapseButton();
         } else {
             expandButton();
-        }
-    }
-
-    public void setButtonBackground(Drawable buttonBackground) {
-        if (buttonBackground != null) {
-            swipeButton.setBackground(buttonBackground);
         }
     }
 }

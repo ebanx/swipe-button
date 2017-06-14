@@ -35,13 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        Button changeStateButton = (Button) findViewById(R.id.change_state_btn);
-        changeStateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                swipeButton.toggleState();
-            }
-        });
+
     }
 
     @Override
