@@ -23,7 +23,6 @@ import android.widget.TextView;
 
 /**
  * Created by leandroferreira on 07/03/17.
- *
  */
 
 public class SwipeButton extends RelativeLayout {
@@ -67,7 +66,7 @@ public class SwipeButton extends RelativeLayout {
 
         init(context, attrs, defStyleAttr, defStyleRes);
     }
-    
+
     public boolean isActive() {
         return active;
     }
@@ -242,46 +241,46 @@ public class SwipeButton extends RelativeLayout {
         return new OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN:
-                    return true;
-                case MotionEvent.ACTION_MOVE:
-                    if (initialX == 0) {
-                        initialX = swipeButton.getX();
-                    }
-
-                    if (event.getX() > initialX + swipeButton.getWidth() / 2 &&
-                            event.getX() + swipeButton.getWidth() / 2 < getWidth()) {
-                        swipeButton.setX(event.getX() - swipeButton.getWidth() / 2);
-                        centerText.setAlpha(1 - 1.3f * (swipeButton.getX() + swipeButton.getWidth()) / getWidth());
-                    }
-
-                    if  (event.getX() + swipeButton.getWidth() / 2 > getWidth() &&
-                            swipeButton.getX() + swipeButton.getWidth() / 2 < getWidth()) {
-                        swipeButton.setX(getWidth() - swipeButton.getWidth());
-                    }
-
-                    if  (event.getX() < swipeButton.getWidth() / 2 &&
-                            swipeButton.getX() > 0) {
-                        swipeButton.setX(0);
-                    }
-
-                    return true;
-                case MotionEvent.ACTION_UP:
-                    if (active) {
-                        collapseButton();
-                    } else {
-                        if (swipeButton.getX() + swipeButton.getWidth() > getWidth() * 0.85) {
-                            expandButton();
-                        } else {
-                            moveButtonBack();
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        return true;
+                    case MotionEvent.ACTION_MOVE:
+                        if (initialX == 0) {
+                            initialX = swipeButton.getX();
                         }
-                    }
 
-                    return true;
+                        if (event.getX() > initialX + swipeButton.getWidth() / 2 &&
+                                event.getX() + swipeButton.getWidth() / 2 < getWidth()) {
+                            swipeButton.setX(event.getX() - swipeButton.getWidth() / 2);
+                            centerText.setAlpha(1 - 1.3f * (swipeButton.getX() + swipeButton.getWidth()) / getWidth());
+                        }
+
+                        if (event.getX() + swipeButton.getWidth() / 2 > getWidth() &&
+                                swipeButton.getX() + swipeButton.getWidth() / 2 < getWidth()) {
+                            swipeButton.setX(getWidth() - swipeButton.getWidth());
+                        }
+
+                        if (event.getX() < swipeButton.getWidth() / 2 &&
+                                swipeButton.getX() > 0) {
+                            swipeButton.setX(0);
+                        }
+
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        if (active) {
+                            collapseButton();
+                        } else {
+                            if (swipeButton.getX() + swipeButton.getWidth() > getWidth() * 0.85) {
+                                expandButton();
+                            } else {
+                                moveButtonBack();
+                            }
+                        }
+
+                        return true;
                 }
 
-            return false;
+                return false;
             }
         };
     }
@@ -361,7 +360,7 @@ public class SwipeButton extends RelativeLayout {
         widthAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                ViewGroup.LayoutParams params =  swipeButton.getLayoutParams();
+                ViewGroup.LayoutParams params = swipeButton.getLayoutParams();
                 params.width = (Integer) widthAnimator.getAnimatedValue();
                 swipeButton.setLayoutParams(params);
             }
@@ -390,4 +389,17 @@ public class SwipeButton extends RelativeLayout {
     }
 
 
+    public void toggleState() {
+        if (isActive()) {
+            collapseButton();
+        } else {
+            expandButton();
+        }
+    }
+
+    public void setButtonBackground(Drawable buttonBackground) {
+        if (buttonBackground != null) {
+            swipeButton.setBackground(buttonBackground);
+        }
+    }
 }

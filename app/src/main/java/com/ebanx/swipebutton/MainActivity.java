@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.ebanx.swipebtn.OnStateChangeListener;
@@ -16,18 +18,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SwipeButton swipeButton = (SwipeButton) findViewById(R.id.swipe_btn_disabled);
-
+        final SwipeButton swipeButton = (SwipeButton) findViewById(R.id.swipe_btn_enabled);
+      
         swipeButton.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_button2));
         swipeButton.setSlidingButtonBackground(ContextCompat.getDrawable(this, R.drawable.shape_rounded2));
         swipeButton.setInnerTextPadding(10, 10, 10, 10);
 
-//        swipeButton.setOnStateChangeListener(new OnStateChangeListener() {
-//            @Override
-//            public void onStateChange(boolean active) {
-//                Toast.makeText(MainActivity.this, "State: " + active, Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        swipeButton.setOnStateChangeListener(new OnStateChangeListener() {
+            @Override
+            public void onStateChange(boolean active) {
+                Toast.makeText(MainActivity.this, "State: " + active, Toast.LENGTH_SHORT).show();
+                if (active) {
+                    swipeButton.setButtonBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.shape_button));
+                } else {
+                    swipeButton.setButtonBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.shape_button3));
+                }
+            }
+        });
+        Button changeStateButton = (Button) findViewById(R.id.change_state_btn);
+        changeStateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swipeButton.toggleState();
+            }
+        });
     }
 
     @Override
