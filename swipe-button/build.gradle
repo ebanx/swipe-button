@@ -3,7 +3,7 @@ apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'gnag'
 
-version = '0.5.1'
+version = '0.5.2'
 group = 'com.ebanx'
 
 android {
@@ -103,7 +103,7 @@ install {
             packaging 'aar'
             groupId 'com.ebanx'
             artifactId 'swipe-button'
-            version '0.5.1'
+            version '0.5.2'
 
             licenses {
                 license {

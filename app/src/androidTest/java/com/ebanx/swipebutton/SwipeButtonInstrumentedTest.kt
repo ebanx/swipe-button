@@ -39,5 +39,14 @@ class SwipeButtonInstrumentedTest {
         }
     }
 
+    @Test
+    fun shouldNotAcceptSwipeFromOutsideMovingPart() {
+        test {
+            enableFromMidOfButton()
+        } result {
+            checkButtonIsDisabled(activityTest.activity.findViewById(R.id.swipe_btn_disabled) as SwipeButton)
+        }
+    }
+
     fun test(func: SwipeButtonTestRobot.() -> Unit) = SwipeButtonTestRobot().apply { func() }
 }
