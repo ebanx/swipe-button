@@ -11,11 +11,22 @@ android:
   - tools
   - build-tools-25.0.3
   - android-25
+  - android-22
   - extra-android-m2repository
+  - sys-img-armeabi-v7a-android-22
 before_install: chmod +x gradle/buildWithTravis.sh
+before_script:
+  - android list targets
+  - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
+  - emulator -avd test -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
+
 script:
-- ./gradle/buildWithTravis.sh
+  - ./gradlew clean build connectedCheck
 after_failure: lynx -dump app/build/outputs/gnag/gnag.html
+after_success:
+  - ./gradle/buildWithTravis.sh
 env:
   global:
   - secure: TZ11ozcJozynKr37pRPY2METtIEsDav//mE7wiCEumM4W59QMMnVqjJGTxBipbAuAX36PnEg0/jZbHfXjVJ4py9tGIDB3nlDULqRN/0Ddko/y4gzPQLVpvD22UU0N6g/r0tTJ4H775nxWF07Jw4nohtit7GVZS9Z/dgYvSFE7r2blnflzBBqqRZ2godE0r+8oZV6bRqpo/XxLEqiaBJS7cNbfZIKb+EnwPPuslA4ZdqPAM6U8rV43rzP4oi0M0Z+33s8D/ppDNhU6fPtt8cLIpJaMR5hLowg/U1y919Gp6wpA75Ttx9wZuxBFeAyJxKhJ0O5Myt21Soyw4blayUqqba3i/Nh+voNogwa9JUWzG/AOPDRQqCqKG0yswoRiKfTprSS6w487E1mHpLygftkaTAYKU3HYE/MZl8VYw6FUBC3QSNL5IJ/K8+k5K+Q9xwRBh9W57sclDcAq4fchrH4SKnYQ4GwFpLzyZBblL02ya+wi1kFxLlyHHPZNV/ZLAFG5uc/q1xfs3G6IPcjaRDWk2Ole0vTfqoCV1BVGKJ4+/M4XC+A6ML09CyOYzyu0mZFqWBzyCN3k3Up9sP+ysA9Et28ZO2JbCass3EV8hn1kF4eGwLgOtRpklZCttwLYPqmMjZQeFevF5+QRSZC80eHjf7kxQDwdBMja+dQS3xrIyE=
