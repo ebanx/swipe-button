@@ -27,6 +27,7 @@ import android.widget.TextView;
  */
 
 public class SwipeButton extends RelativeLayout {
+    
 
     private ImageView swipeButton;
     private float initialX;
