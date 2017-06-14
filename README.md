@@ -80,7 +80,7 @@ For bugs, feature requests, and discussion please use [GitHub Issues](https://gi
 ## Credits
 
  - Design: [Diego Martins](https://dribbble.com/diegomartins) 
- - Development: [Leandro Borges Ferreira](https://github.com/leandroBorgesFerreira)
+ - Development: [Leandro Borges Ferreira](https://github.com/leandroBorgesFerreira), [Vinicius Nadin](https://github.com/viniciato)
  - Codepen: [Guilherme Pressuto](https://github.com/gpressutto5)
  - Codepen: [João Issamu Francisco](https://github.com/joaoissamu)
 
