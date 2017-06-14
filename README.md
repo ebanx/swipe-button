@@ -23,7 +23,7 @@ Add the button in your layout file and customize it the way you like it.
     <com.ebanx.swipebtn.SwipeButton
         android:id="@+id/swipe_btn"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         app:inner_text="SWIPE"
