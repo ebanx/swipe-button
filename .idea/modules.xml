@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SwipeButton.iml" filepath="$PROJECT_DIR$/SwipeButton.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/swipe-button/swipe-button.iml" filepath="$PROJECT_DIR$/swipe-button/swipe-button.iml" />
       <module fileurl="file://$PROJECT_DIR$/swipe-button.iml" filepath="$PROJECT_DIR$/swipe-button.iml" />
-      <module fileurl="file://$PROJECT_DIR$/swipe-button.iml" filepath="$PROJECT_DIR$/swipe-button.iml" />
-      <module fileurl="file://$PROJECT_DIR$/swipe-button/swipe-button-swipe-button.iml" filepath="$PROJECT_DIR$/swipe-button/swipe-button-swipe-button.iml" />
       <module fileurl="file://$PROJECT_DIR$/swipe-button/swipe-button-swipe-button.iml" filepath="$PROJECT_DIR$/swipe-button/swipe-button-swipe-button.iml" />
     </modules>
   </component>
