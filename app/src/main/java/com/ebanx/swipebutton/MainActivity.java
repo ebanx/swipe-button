@@ -28,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onStateChange(boolean active) {
                 Toast.makeText(MainActivity.this, "State: " + active, Toast.LENGTH_SHORT).show();
+                if (active) {
+                    swipeButton.setButtonBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.shape_button));
+                } else {
+                    swipeButton.setButtonBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.shape_button3));
+                }
             }
         });
         Button changeStateButton = (Button) findViewById(R.id.change_state_btn);
