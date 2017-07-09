@@ -36,6 +36,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button toggleBtn = (Button) findViewById(R.id.toggleBtn);
+        toggleBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!swipeButton.isActive()) {
+                    swipeButton.toggleState();
+                }
+            }
+        });
+
     }
 
     @Override
