@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 /**
  * Created by leandroferreira on 07/03/17.
+ *
  */
 
 public class SwipeButton extends RelativeLayout {
@@ -38,9 +39,12 @@ public class SwipeButton extends RelativeLayout {
     private Drawable enabledDrawable;
 
     private OnStateChangeListener onStateChangeListener;
+    private OnActiveListener onActiveListener;
 
     private static final int ENABLED = 0;
     private static final int DISABLED = 1;
+
+    private boolean hasActivationState;
 
     public SwipeButton(Context context) {
         super(context);
@@ -109,6 +113,10 @@ public class SwipeButton extends RelativeLayout {
         this.onStateChangeListener = onStateChangeListener;
     }
 
+    public void setOnActiveListener(OnActiveListener onActiveListener) {
+        this.onActiveListener = onActiveListener;
+    }
+
     public void setInnerTextPadding(int left, int top, int right, int bottom) {
         centerText.setPadding(left, top, right, bottom);
     }
@@ -117,7 +125,13 @@ public class SwipeButton extends RelativeLayout {
         swipeButtonInner.setPadding(left, top, right, bottom);
     }
 
+    public void setHasActivationState(boolean hasActivationState) {
+        this.hasActivationState = hasActivationState;
+    }
+
     private void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        hasActivationState = true;
+
         background = new RelativeLayout(context);
 
         LayoutParams layoutParamsView = new LayoutParams(
@@ -237,6 +251,8 @@ public class SwipeButton extends RelativeLayout {
                     (int) buttonRightPadding,
                     (int) buttonBottomPadding);
 
+            hasActivationState = typedArray.getBoolean(R.styleable.SwipeButton_has_activate_state, true);
+
             typedArray.recycle();
         }
 
@@ -276,8 +292,13 @@ public class SwipeButton extends RelativeLayout {
                         if (active) {
                             collapseButton();
                         } else {
-                            if (swipeButtonInner.getX() + swipeButtonInner.getWidth() > getWidth() * 0.85) {
-                                expandButton();
+                            if (swipeButtonInner.getX() + swipeButtonInner.getWidth() > getWidth() * 0.9) {
+                                if (hasActivationState) {
+                                    expandButton();
+                                } else if(onActiveListener != null) {
+                                    onActiveListener.onActive();
+                                    moveButtonBack();
+                                }
                             } else {
                                 moveButtonBack();
                             }

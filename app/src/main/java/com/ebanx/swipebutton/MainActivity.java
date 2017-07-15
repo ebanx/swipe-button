@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.ebanx.swipebtn.OnActiveListener;
 import com.ebanx.swipebtn.OnStateChangeListener;
 import com.ebanx.swipebtn.SwipeButton;
 
@@ -19,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final SwipeButton swipeButton = (SwipeButton) findViewById(R.id.swipe_btn_enabled);
-      
+        final SwipeButton swipeButtonNoState = (SwipeButton) findViewById(R.id.swipe_no_keep_state);
+
         swipeButton.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_button2));
         swipeButton.setSlidingButtonBackground(ContextCompat.getDrawable(this, R.drawable.shape_rounded2));
         swipeButton.setInnerTextPadding(10, 10, 10, 10);
@@ -33,6 +35,13 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     swipeButton.setButtonBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.shape_button3));
                 }
+            }
+        });
+
+        swipeButtonNoState.setOnActiveListener(new OnActiveListener() {
+            @Override
+            public void onActive() {
+                Toast.makeText(MainActivity.this, "Active!", Toast.LENGTH_SHORT).show();
             }
         });
 
