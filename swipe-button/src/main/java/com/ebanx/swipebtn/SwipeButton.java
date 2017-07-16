@@ -350,6 +350,10 @@ public class SwipeButton extends RelativeLayout {
                 if (onStateChangeListener != null) {
                     onStateChangeListener.onStateChange(active);
                 }
+
+                if (onActiveListener != null) {
+                    onActiveListener.onActive();
+                }
             }
         });
 
