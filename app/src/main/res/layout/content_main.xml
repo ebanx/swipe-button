@@ -47,7 +47,7 @@
         app:button_right_padding="20dp"
         app:button_top_padding="20dp"
         app:initial_state="disabled"
-        app:inner_text="SWIPE"
+        app:inner_text=""
         app:inner_text_background="@drawable/shape_rounded"
         app:inner_text_color="@android:color/white"
         app:inner_text_size="16sp"
