@@ -44,6 +44,9 @@ public class SwipeButton extends RelativeLayout {
     private static final int ENABLED = 0;
     private static final int DISABLED = 1;
 
+    private int collapsedWidth;
+    private int collapsedHeight;
+
     private boolean hasActivationState;
 
     public SwipeButton(Context context) {
@@ -161,6 +164,11 @@ public class SwipeButton extends RelativeLayout {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SwipeButton,
                     defStyleAttr, defStyleRes);
 
+            collapsedWidth = (int) typedArray.getDimension(R.styleable.SwipeButton_button_image_width,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
+            collapsedHeight = (int) typedArray.getDimension(R.styleable.SwipeButton_button_image_height,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
+
             Drawable drawable = typedArray.getDrawable(R.styleable.SwipeButton_inner_text_background);
 
             if (drawable != null) {
@@ -210,8 +218,8 @@ public class SwipeButton extends RelativeLayout {
                 active = true;
             } else {
                 LayoutParams layoutParamsButton = new LayoutParams(
-                        ViewGroup.LayoutParams.WRAP_CONTENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT);
+                        (int) collapsedWidth,
+                        (int) collapsedHeight);
 
                 layoutParamsButton.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
                 layoutParamsButton.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
@@ -384,9 +392,15 @@ public class SwipeButton extends RelativeLayout {
     }
 
     private void collapseButton() {
-        final ValueAnimator widthAnimator = ValueAnimator.ofInt(
-                swipeButtonInner.getWidth(),
-                swipeButtonInner.getHeight());
+        int finalWidth;
+
+        if (collapsedWidth == ViewGroup.LayoutParams.WRAP_CONTENT) {
+            finalWidth = swipeButtonInner.getHeight();
+        } else {
+            finalWidth = collapsedWidth;
+        }
+
+        final ValueAnimator widthAnimator = ValueAnimator.ofInt(swipeButtonInner.getWidth(), finalWidth);
 
         widthAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
