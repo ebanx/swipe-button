@@ -34,6 +34,8 @@ Add the button in your layout file and customize it the way you like it.
         app:inner_text_top_padding="18dp"
         app:inner_text_bottom_padding="18dp"
         app:inner_text_background="@drawable/shape_rounded"
+        app:button_image_height="60dp"
+        app:button_image_width="100dp"
         app:button_image_disabled="@drawable/ic_lock_open_black_24dp"
         app:button_image_enabled="@drawable/ic_lock_outline_black_24dp"
         app:button_left_padding="20dp"
@@ -46,7 +48,7 @@ Add the button in your layout file and customize it the way you like it.
         />
         
 ### Setting the sliding button size
-You can set the size of the moving part of the button by changing the icon inside it or changing the padding in the button.
+You can set the size of the moving part of the button by changing the app:button_image_width and app:button_image_height properties.
 
 ### Setting the text part size
 You can set the size of the fixed part of the button by setting the text size of the setting the padding in this part.
@@ -73,6 +75,8 @@ Or listen for the activation of the button
 
 ## Configure XML
 
+ - button_image_width: Change the width of the moving part of the button
+ - button_image_height: Change the height of the moving part of the button
  - inner_text: Text in the center of the button. It disapears when swiped
  - inner_text_color: Color of the text
  - inner_text_size: Size of the text
