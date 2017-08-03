@@ -56,7 +56,7 @@ class SwipeButtonInstrumentedTest {
     fun shouldCreateButtonCorrectly() {
         test { } result {
             checkButtonIsDisabled(activityTest.activity.swipeBtnDisabled as SwipeButton)
-            checkButtonIsEnabled(activityTest.activity.swipeBtnDisabled as SwipeButton)
+            checkButtonIsEnabled(activityTest.activity.swipeBtnEnabled as SwipeButton)
             shouldBeginWithRightText("SWIPE")
         }
     }
