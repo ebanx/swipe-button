@@ -17,17 +17,17 @@ import ebanx.com.ego.utils.CenterSwipeAction
 class SwipeButtonTestRobot {
 
     fun enableButton() : SwipeButtonTestRobot {
-        onView(withId(R.id.swipe_btn_disabled)).perform(swipeRight())
+        onView(withId(R.id.swipeBtnDisabled)).perform(swipeRight())
         return this
     }
 
     fun disableButton() : SwipeButtonTestRobot {
-        onView(withId(R.id.swipe_btn_disabled)).perform(click())
+        onView(withId(R.id.swipeBtnDisabled)).perform(click())
         return this
     }
 
     fun enableFromMidOfButton() : SwipeButtonTestRobot {
-        onView(withId(R.id.swipe_btn_disabled)).perform(swipeFromCenterToRight())
+        onView(withId(R.id.swipeBtnDisabled)).perform(swipeFromCenterToRight())
         return this
     }
 

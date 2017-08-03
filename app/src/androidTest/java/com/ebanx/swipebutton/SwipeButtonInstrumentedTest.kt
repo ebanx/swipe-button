@@ -5,6 +5,7 @@ import android.content.Context
 import android.support.test.rule.ActivityTestRule
 import android.view.WindowManager
 import com.ebanx.swipebtn.SwipeButton
+import kotlinx.android.synthetic.main.content_main.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -37,7 +38,7 @@ class SwipeButtonInstrumentedTest {
         test {
             enableButton()
         } result {
-            checkButtonIsEnabled(activityTest.activity.findViewById(R.id.swipe_btn_disabled) as SwipeButton)
+            checkButtonIsEnabled(activityTest.activity.swipeBtnDisabled as SwipeButton)
         }
     }
 
@@ -47,15 +48,15 @@ class SwipeButtonInstrumentedTest {
             enableButton()
             disableButton()
         } result {
-            checkButtonIsDisabled(activityTest.activity.findViewById(R.id.swipe_btn_disabled) as SwipeButton)
+            checkButtonIsDisabled(activityTest.activity.swipeBtnDisabled as SwipeButton)
         }
     }
 
     @Test
     fun shouldCreateButtonCorrectly() {
         test { } result {
-            checkButtonIsDisabled(activityTest.activity.findViewById(R.id.swipe_btn_disabled) as SwipeButton)
-            checkButtonIsEnabled(activityTest.activity.findViewById(R.id.swipeBtnEnabled) as SwipeButton)
+            checkButtonIsDisabled(activityTest.activity.swipeBtnDisabled as SwipeButton)
+            checkButtonIsEnabled(activityTest.activity.swipeBtnDisabled as SwipeButton)
             shouldBeginWithRightText("SWIPE")
         }
     }
@@ -65,7 +66,7 @@ class SwipeButtonInstrumentedTest {
         test {
             enableFromMidOfButton()
         } result {
-            checkButtonIsDisabled(activityTest.activity.findViewById(R.id.swipe_btn_disabled) as SwipeButton)
+            checkButtonIsDisabled(activityTest.activity.swipeBtnDisabled as SwipeButton)
         }
     }
 
