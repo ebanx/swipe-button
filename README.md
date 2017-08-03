@@ -7,7 +7,7 @@
 
 ![enter image description here](https://lh3.googleusercontent.com/-m87DnCN1GwQ/WWuDroJAP5I/AAAAAAAAADE/tI8Tj0HcIHoy8PCsjSUbLq75ugmqtC77ACLcBGAs/s0/swipe_one_state.gif "swipe_one_state.gif")
 
-![enter image description here](https://drive.google.com/file/d/0B0vUiDl0wr87dkJGdVY4NFc4WVU/view?usp=sharing)
+![enter image description here](https://drive.google.com/file/d/0B0vUiDl0wr87dkJGdVY4NFc4WVU/export?format=gif)
 
 Library of an android button activated by swipe. 
 
