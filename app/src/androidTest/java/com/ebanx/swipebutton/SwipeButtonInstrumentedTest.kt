@@ -19,18 +19,18 @@ class SwipeButtonInstrumentedTest {
     @Suppress("DEPRECATION")
     @Before
     fun setUp() {
-        activityTest.activity.runOnUiThread {
-            val mKG = activityTest.activity.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
-            val mLock = mKG.newKeyguardLock(Context.KEYGUARD_SERVICE)
-            mLock.disableKeyguard()
-
-            //turn the screen on
-            activityTest.activity.window.addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD or
-                    WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
-                    WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON or
-                    WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON or
-                    WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON)
-        }
+//        activityTest.activity.runOnUiThread {
+//            val mKG = activityTest.activity.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
+//            val mLock = mKG.newKeyguardLock(Context.KEYGUARD_SERVICE)
+//            mLock.disableKeyguard()
+//
+//            //turn the screen on
+//            activityTest.activity.window.addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD or
+//                    WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
+//                    WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON or
+//                    WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON or
+//                    WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON)
+//        }
     }
 
     @Test
