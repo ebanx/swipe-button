@@ -8,7 +8,10 @@ import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
@@ -18,16 +21,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
  * Created by leandroferreira on 07/03/17.
- *
  */
 
 public class SwipeButton extends RelativeLayout {
-    
+
 
     private ImageView swipeButtonInner;
     private float initialX;
@@ -47,6 +50,9 @@ public class SwipeButton extends RelativeLayout {
     private int collapsedWidth;
     private int collapsedHeight;
 
+    private LinearLayout layer;
+    private boolean trailEnabled = false;
+    private int trailingColor = Color.WHITE;
     private boolean hasActivationState;
 
     public SwipeButton(Context context) {
@@ -168,7 +174,10 @@ public class SwipeButton extends RelativeLayout {
                     ViewGroup.LayoutParams.WRAP_CONTENT);
             collapsedHeight = (int) typedArray.getDimension(R.styleable.SwipeButton_button_image_height,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
-
+            trailEnabled = typedArray.getBoolean(R.styleable.SwipeButton_button_trail_enabled,
+                    false);
+            trailingColor = typedArray.getColor(R.styleable.SwipeButton_button_trail_color,
+                    Color.WHITE);
             Drawable drawable = typedArray.getDrawable(R.styleable.SwipeButton_inner_text_background);
 
             if (drawable != null) {
@@ -263,7 +272,16 @@ public class SwipeButton extends RelativeLayout {
 
             typedArray.recycle();
         }
+        if(trailEnabled){
+            layer = new LinearLayout(context);
+            LayoutParams layoutParamsLayer = new LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
 
+            layoutParamsLayer.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+
+            background.addView(layer, layoutParamsView);
+        }
         setOnTouchListener(getButtonTouchListener());
     }
 
@@ -283,6 +301,7 @@ public class SwipeButton extends RelativeLayout {
                                 event.getX() + swipeButtonInner.getWidth() / 2 < getWidth()) {
                             swipeButtonInner.setX(event.getX() - swipeButtonInner.getWidth() / 2);
                             centerText.setAlpha(1 - 1.3f * (swipeButtonInner.getX() + swipeButtonInner.getWidth()) / getWidth());
+                            setTrailingBitmap();
                         }
 
                         if (event.getX() + swipeButtonInner.getWidth() / 2 > getWidth() &&
@@ -378,6 +397,15 @@ public class SwipeButton extends RelativeLayout {
             public void onAnimationUpdate(ValueAnimator animation) {
                 float x = (Float) positionAnimator.getAnimatedValue();
                 swipeButtonInner.setX(x);
+                setTrailingBitmap();
+            }
+        });
+
+        positionAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                if(layer!=null)
+                    layer.setBackground(null);
             }
         });
 
@@ -408,6 +436,7 @@ public class SwipeButton extends RelativeLayout {
                 ViewGroup.LayoutParams params = swipeButtonInner.getLayoutParams();
                 params.width = (Integer) widthAnimator.getAnimatedValue();
                 swipeButtonInner.setLayoutParams(params);
+                setTrailingBitmap();
             }
         });
 
@@ -417,10 +446,11 @@ public class SwipeButton extends RelativeLayout {
                 super.onAnimationEnd(animation);
                 active = false;
                 swipeButtonInner.setImageDrawable(disabledDrawable);
-
                 if (onStateChangeListener != null) {
                     onStateChangeListener.onStateChange(active);
                 }
+                if(layer!=null)
+                    layer.setBackground(null);
             }
         });
 
@@ -433,6 +463,21 @@ public class SwipeButton extends RelativeLayout {
         animatorSet.start();
     }
 
+    private void setTrailingBitmap() {
+        if(trailEnabled){
+            layer.setBackground(null);
+            Bitmap bitmap = Bitmap.createBitmap((int) (
+                            swipeButtonInner.getX() + swipeButtonInner.getWidth() / 2),
+                    swipeButtonInner.getHeight(),
+                    Bitmap.Config.ARGB_4444);
+            Canvas canvas = new Canvas(bitmap);
+            canvas.drawColor(trailingColor);
+            BitmapDrawable drawable = new BitmapDrawable(getResources(), bitmap);
+            drawable.setGravity(Gravity.START);
+            //setGravity(Gravity.START);
+            layer.setBackground(drawable);
+        }
+    }
 
     public void toggleState() {
         if (isActive()) {
