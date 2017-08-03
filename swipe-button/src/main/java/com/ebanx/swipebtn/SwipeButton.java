@@ -232,9 +232,7 @@ public class SwipeButton extends RelativeLayout {
 
                 active = true;
             } else {
-                LayoutParams layoutParamsButton = new LayoutParams(
-                        (int) collapsedWidth,
-                        (int) collapsedHeight);
+                LayoutParams layoutParamsButton = new LayoutParams(collapsedWidth, collapsedHeight);
 
                 layoutParamsButton.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
                 layoutParamsButton.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
@@ -402,7 +400,7 @@ public class SwipeButton extends RelativeLayout {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                if(layer!=null){
+                if (layer!=null) {
                     layer.setVisibility(View.GONE);
                 }
             }
@@ -448,7 +446,7 @@ public class SwipeButton extends RelativeLayout {
                 if (onStateChangeListener != null) {
                     onStateChangeListener.onStateChange(active);
                 }
-                if(layer!=null){
+                if (layer!=null) {
                     layer.setVisibility(View.GONE);
                 }
             }
