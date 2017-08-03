@@ -468,7 +468,7 @@ public class SwipeButton extends RelativeLayout {
             layer.setVisibility(View.VISIBLE);
             layer.setLayoutParams(new RelativeLayout.LayoutParams(
                     (int) (swipeButtonInner.getX() + swipeButtonInner.getWidth()),
-                    background.getHeight()));
+                    swipeButtonInner.getHeight()));
         }
     }
 
