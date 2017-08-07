@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">swipebtn</string>
+
+    <string name="error_need_to_add_trailing_effect_drawable"> If you set trail enabled, you must set a value to button_trail_drawable. </string>
 </resources>
