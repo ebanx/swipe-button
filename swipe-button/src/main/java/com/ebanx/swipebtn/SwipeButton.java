@@ -27,6 +27,7 @@ import android.widget.TextView;
 
 /**
  * Created by leandroferreira on 07/03/17.
+ * 
  */
 
 public class SwipeButton extends RelativeLayout {
@@ -176,11 +177,6 @@ public class SwipeButton extends RelativeLayout {
             trailEnabled = typedArray.getBoolean(R.styleable.SwipeButton_button_trail_enabled,
                     false);
             Drawable trailingDrawable = typedArray.getDrawable(R.styleable.SwipeButton_button_trail_drawable);
-
-//            if (trailEnabled && trailingDrawable == null) {
-//                throw new IllegalArgumentException(getContext().getString(
-//                        R.string.error_need_to_add_trailing_effect_drawable));
-//            }
 
             Drawable backgroundDrawable = typedArray.getDrawable(R.styleable.SwipeButton_inner_text_background);
 
