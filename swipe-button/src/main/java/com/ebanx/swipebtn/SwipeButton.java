@@ -177,22 +177,28 @@ public class SwipeButton extends RelativeLayout {
                     false);
             Drawable trailingDrawable = typedArray.getDrawable(R.styleable.SwipeButton_button_trail_drawable);
 
-            if (trailEnabled && trailingDrawable == null) {
-                throw new IllegalArgumentException(getContext().getString(
-                        R.string.error_need_to_add_trailing_effect_drawable));
-            }
+//            if (trailEnabled && trailingDrawable == null) {
+//                throw new IllegalArgumentException(getContext().getString(
+//                        R.string.error_need_to_add_trailing_effect_drawable));
+//            }
 
-            Drawable drawable = typedArray.getDrawable(R.styleable.SwipeButton_inner_text_background);
+            Drawable backgroundDrawable = typedArray.getDrawable(R.styleable.SwipeButton_inner_text_background);
 
-            if (drawable != null) {
-                background.setBackground(drawable);
+            if (backgroundDrawable != null) {
+                background.setBackground(backgroundDrawable);
             } else {
                 background.setBackground(ContextCompat.getDrawable(context, R.drawable.shape_rounded));
             }
 
-            if (trailEnabled && trailingDrawable != null) {
+            if (trailEnabled) {
                 layer = new LinearLayout(context);
-                layer.setBackground(trailingDrawable);
+
+                if (trailingDrawable != null) {
+                    layer.setBackground(trailingDrawable);
+                } else {
+                    layer.setBackground(typedArray.getDrawable(R.styleable.SwipeButton_button_background));
+                }
+
                 layer.setGravity(Gravity.START);
                 layer.setVisibility(View.GONE);
                 background.addView(layer, layoutParamsView);
@@ -255,8 +261,7 @@ public class SwipeButton extends RelativeLayout {
                     (int) innerTextRightPadding,
                     (int) innerTextBottomPadding);
 
-           Drawable buttonBackground =
-                    typedArray.getDrawable(R.styleable.SwipeButton_button_background);
+            Drawable buttonBackground = typedArray.getDrawable(R.styleable.SwipeButton_button_background);
 
             if (buttonBackground != null) {
                 swipeButton.setBackground(buttonBackground);
@@ -298,7 +303,7 @@ public class SwipeButton extends RelativeLayout {
                             initialX = swipeButtonInner.getX();
                         }
 
-                        if (event.getX() > initialX + swipeButtonInner.getWidth() / 2 &&
+                        if (event.getX() > swipeButtonInner.getWidth() / 2 &&
                                 event.getX() + swipeButtonInner.getWidth() / 2 < getWidth()) {
                             swipeButtonInner.setX(event.getX() - swipeButtonInner.getWidth() / 2);
                             centerText.setAlpha(1 - 1.3f * (swipeButtonInner.getX() + swipeButtonInner.getWidth()) / getWidth());
@@ -310,8 +315,7 @@ public class SwipeButton extends RelativeLayout {
                             swipeButtonInner.setX(getWidth() - swipeButtonInner.getWidth());
                         }
 
-                        if (event.getX() < swipeButtonInner.getWidth() / 2 &&
-                                swipeButtonInner.getX() > 0) {
+                        if (event.getX() < swipeButtonInner.getWidth() / 2) {
                             swipeButtonInner.setX(0);
                         }
 
@@ -471,8 +475,7 @@ public class SwipeButton extends RelativeLayout {
         if (trailEnabled) {
             layer.setVisibility(View.VISIBLE);
             layer.setLayoutParams(new RelativeLayout.LayoutParams(
-                    (int) (swipeButtonInner.getX() + swipeButtonInner.getWidth()),
-                    swipeButtonInner.getHeight()));
+                    (int) (swipeButtonInner.getX() + swipeButtonInner.getWidth() / 3), centerText.getHeight()));
         }
     }
 
