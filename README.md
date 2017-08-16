@@ -79,7 +79,7 @@ Or listen for the activation of the button
 ### Setting Drawable Background from Code using Color
 You can change the color of the drawable dynamically based on your requirement from the code
 		
-		swipeBtnChangeColor.setButtonColor(R.color.swipeLightGreen);
+	swipeBtnChangeColor.setButtonColor(R.color.swipeLightGreen);
         swipeBtnChangeColor.setLayoutBgColor(R.color.swipeDarkGreen);
       
 
