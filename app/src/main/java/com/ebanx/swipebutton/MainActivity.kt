@@ -16,6 +16,9 @@ class MainActivity : AppCompatActivity() {
         swipeBtnEnabled.setSlidingButtonBackground(ContextCompat.getDrawable(this, R.drawable.shape_rounded2))
         swipeBtnEnabled.setInnerTextPadding(10, 10, 10, 10)
 
+        swipeBtnChangeColor.setButtonColor(R.color.swipeLightGreen);
+        swipeBtnChangeColor.setLayoutBgColor(R.color.swipeDarkGreen);
+
         swipeBtnEnabled.setOnStateChangeListener { active ->
             Toast.makeText(this@MainActivity, "State: " + active, Toast.LENGTH_SHORT).show()
             if (active) {

@@ -46,6 +46,7 @@ Add the button in your layout file and customize it the way you like it.
         app:button_bottom_padding="20dp"
         app:button_background="@drawable/shape_button"
         app:initial_state="disabled"
+        app:swipe_enabled="true"
         app:has_activate_state="true"
         />
         
@@ -75,6 +76,13 @@ Or listen for the activation of the button
                 }
             });
 
+### Setting Drawable Background from Code using Color
+You can change the color of the drawable dynamically based on your requirement from the code
+		
+		swipeBtnChangeColor.setButtonColor(R.color.swipeLightGreen);
+        swipeBtnChangeColor.setLayoutBgColor(R.color.swipeDarkGreen);
+      
+
 ## Configure XML
 
  - button_image_width: Change the width of the moving part of the button
@@ -90,6 +98,7 @@ Or listen for the activation of the button
  - has_activate_state: Set if the button stops in the "active" state. If false, the button will only come back to the initial state after swiped until the end of its way. Use OnActiveListener if you set the parameter to false.
  - button_trail_enabled: Set trailing effect enabled. 
  - button_trail_color: Set the color of the trailing effect.
+ - swipe_enabled: Disable/Enable swipe as per requirement.
 
 ## CodePen
 If you would like to see a front-end version of this button you can check a codepen in this link:
@@ -103,7 +112,7 @@ For bugs, feature requests, and discussion please use [GitHub Issues](https://gi
 ## Credits
 
  - Design: [Diego Martins](https://dribbble.com/diegomartins) 
- - Development: [Leandro Borges Ferreira](https://github.com/leandroBorgesFerreira), [Vinicius Nadin](https://github.com/viniciato), [Rahul Kumar](https://github.com/rahulk11)
+ - Development: [Leandro Borges Ferreira](https://github.com/leandroBorgesFerreira), [Vinicius Nadin](https://github.com/viniciato), [Rahul Kumar](https://github.com/rahulk11), [Nidhin Prathap](https://github.com/nidhinprathap)
  - Codepen: [Guilherme Pressuto](https://github.com/gpressutto5)
  - Codepen: [João Issamu Francisco](https://github.com/joaoissamu)
 

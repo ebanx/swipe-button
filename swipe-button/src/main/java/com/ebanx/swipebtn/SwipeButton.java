@@ -11,6 +11,7 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
@@ -51,9 +52,11 @@ public class SwipeButton extends RelativeLayout {
     private int collapsedHeight;
 
     private LinearLayout layer;
-    private boolean trailEnabled = false;
+    private boolean trailEnabled = false, btnEnabled = true;
     private int trailingColor = Color.WHITE;
     private boolean hasActivationState;
+    Context mContext;
+    Drawable buttonBackground, layoutBackground, trailBackground;
 
     public SwipeButton(Context context) {
         super(context);
@@ -138,9 +141,55 @@ public class SwipeButton extends RelativeLayout {
         this.hasActivationState = hasActivationState;
     }
 
+    /**
+     * Enable or Disable Swipe from code
+     */
+    public void enableSwipeAction(boolean enabled) {
+        setAlphaState(enabled);
+        if (!enabled) {
+            setOnTouchListener(new OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent rawEvent) {
+                    return false;
+                }
+            });
+        } else {
+            setOnTouchListener(getButtonTouchListener());
+        }
+    }
+
+    /**
+     * Set alpha level
+     *
+     * @param enabled
+     */
+    private void setAlphaState(boolean enabled) {
+        if (!enabled) {
+            buttonBackground.setAlpha(100);
+//            trailBackground.setAlpha(100);
+            layoutBackground.setAlpha(100);
+        } else {
+            buttonBackground.setAlpha(255);
+//            trailBackground.setAlpha(255);
+            layoutBackground.setAlpha(255);
+        }
+    }
+
+    public void setButtonColor(int color) {
+        buttonBackground.setColorFilter(ContextCompat.getColor(mContext, color), PorterDuff.Mode.SRC_ATOP);
+    }
+
+    public void setTrailBgColor(int color) {
+        trailBackground.setColorFilter(ContextCompat.getColor(mContext, color), PorterDuff.Mode.SRC_ATOP);
+    }
+
+    public void setLayoutBgColor(int color) {
+        layoutBackground.setColorFilter(ContextCompat.getColor(mContext, color), PorterDuff.Mode.SRC_ATOP);
+    }
+
     private void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         hasActivationState = true;
-
+        mContext = context;
         background = new RelativeLayout(context);
 
         LayoutParams layoutParamsView = new LayoutParams(
@@ -178,13 +227,17 @@ public class SwipeButton extends RelativeLayout {
                     false);
             trailingColor = typedArray.getColor(R.styleable.SwipeButton_button_trail_color,
                     Color.WHITE);
-            Drawable drawable = typedArray.getDrawable(R.styleable.SwipeButton_inner_text_background);
+            layoutBackground = typedArray.getDrawable(R.styleable.SwipeButton_inner_text_background);
 
-            if (drawable != null) {
-                background.setBackground(drawable);
+            btnEnabled = typedArray.getBoolean(R.styleable.SwipeButton_swipe_enabled,
+                    true);
+
+            if (layoutBackground != null) {
+                background.setBackground(layoutBackground);
             } else {
                 background.setBackground(ContextCompat.getDrawable(context, R.drawable.shape_rounded));
             }
+
 
             centerText.setText(typedArray.getText(R.styleable.SwipeButton_inner_text));
             centerText.setTextColor(typedArray.getColor(R.styleable.SwipeButton_inner_text_color,
@@ -245,7 +298,7 @@ public class SwipeButton extends RelativeLayout {
                     (int) innerTextRightPadding,
                     (int) innerTextBottomPadding);
 
-            Drawable buttonBackground =
+            buttonBackground =
                     typedArray.getDrawable(R.styleable.SwipeButton_button_background);
 
             if (buttonBackground != null) {
@@ -272,7 +325,7 @@ public class SwipeButton extends RelativeLayout {
 
             typedArray.recycle();
         }
-        if(trailEnabled){
+        if (trailEnabled) {
             layer = new LinearLayout(context);
             LayoutParams layoutParamsLayer = new LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
@@ -283,6 +336,11 @@ public class SwipeButton extends RelativeLayout {
             background.addView(layer, layoutParamsView);
         }
         setOnTouchListener(getButtonTouchListener());
+        if (!btnEnabled) {
+            enableSwipeAction(false);
+        } else {
+            enableSwipeAction(true);
+        }
     }
 
     private OnTouchListener getButtonTouchListener() {
@@ -322,7 +380,7 @@ public class SwipeButton extends RelativeLayout {
                             if (swipeButtonInner.getX() + swipeButtonInner.getWidth() > getWidth() * 0.9) {
                                 if (hasActivationState) {
                                     expandButton();
-                                } else if(onActiveListener != null) {
+                                } else if (onActiveListener != null) {
                                     onActiveListener.onActive();
                                     moveButtonBack();
                                 }
@@ -404,7 +462,7 @@ public class SwipeButton extends RelativeLayout {
         positionAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                if(layer!=null)
+                if (layer != null)
                     layer.setBackground(null);
             }
         });
@@ -449,7 +507,7 @@ public class SwipeButton extends RelativeLayout {
                 if (onStateChangeListener != null) {
                     onStateChangeListener.onStateChange(active);
                 }
-                if(layer!=null)
+                if (layer != null)
                     layer.setBackground(null);
             }
         });
@@ -464,7 +522,7 @@ public class SwipeButton extends RelativeLayout {
     }
 
     private void setTrailingBitmap() {
-        if(trailEnabled){
+        if (trailEnabled) {
             layer.setBackground(null);
             Bitmap bitmap = Bitmap.createBitmap((int) (
                             swipeButtonInner.getX() + swipeButtonInner.getWidth() / 2),
