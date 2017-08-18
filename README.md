@@ -89,7 +89,7 @@ Or listen for the activation of the button
  - initial_state: Initial state. Default state is disabled.
  - has_activate_state: Set if the button stops in the "active" state. If false, the button will only come back to the initial state after swiped until the end of its way. Use OnActiveListener if you set the parameter to false.
  - button_trail_enabled: Set trailing effect enabled. 
- - button_trail_color: Set the color of the trailing effect.
+ - button_trail_drawable: Set the color of the trailing effect.
 
 ## CodePen
 If you would like to see a front-end version of this button you can check a codepen in this link:
