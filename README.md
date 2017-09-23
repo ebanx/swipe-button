@@ -2,11 +2,6 @@
 
 # Swipe-Button
 
-
-![enter image description here](https://lh3.googleusercontent.com/-pG1QBfiSaIo/WSbswf9TR8I/AAAAAAAAACQ/BITTeBVyhvQHM5o2hTW7x4qsbfW3OJbCQCLcB/s0/button+movie.gif "button movie.gif")
-
-![enter image description here](https://lh3.googleusercontent.com/-m87DnCN1GwQ/WWuDroJAP5I/AAAAAAAAADE/tI8Tj0HcIHoy8PCsjSUbLq75ugmqtC77ACLcBGAs/s0/swipe_one_state.gif "swipe_one_state.gif")
-
 ![enter image description here](https://lh3.googleusercontent.com/ylwD3k8NBLKtdv8--tSwQj0_k-PWdAX_MoWJf3lP80_zfU_qgr8trhRRGeOePwJVOUaXYfbRNlpoeZSD5f3LuDmK1AvI3_qaY5clFd7geffWsmkk2vWMg9NYvkp-G-6qkKhmlgTW4yWfz9BhOoLG74BnY9bQg2Lpxxt_uZTcUDO-48v4Fn0ZNVHGjpzzX0Q1ZsvRWjjuutYUzSyvDGXq7Vxkivrt6prV5amgMhtiUWmqHxKqMl5Ac6KWbV_NK7ZCawrivMda3KG3w83bU4ZvQ2h4MLv-QXkOJnpBS8A9c9QcATYflVhH7u5GqQUpiyG4XInHMzUrs0-WfFFCPEdIKT4z_gkyJpWR38DG5uVFAiVVL-MijtOANqBUbtRmH-KnlElvvPpkrHv5_KiPo5sgsUQw4LZAEXu_aCurBplMeq4vuKvlM04Si_0lI5FJCjPxWC_Yc1YWwbsnWja-ByHxI-oVBzTVJJLrEdtLBWhXwIsJ2N2-ig9Dq1z00h-uzpS6ayJB6i_m14eFO3-5NLXgU5RoalmZGBBEYALqPaOEnBiBqa7PPotj0ChWkwGa7HqfV4bgHmKO3lF76JAyVYq7Sv_T1ssrF2n4QDReMmrfA2HEOiUnXPn0GUqJ9HjmJUXcARsuZNM2OQNnxk_mb5PdHBlFrer_Op9sWtPrhyBqlFg3vg=w640-h177-no "swipe_one_state_with_trail.gif")
 
 Library of an android button activated by swipe. 
