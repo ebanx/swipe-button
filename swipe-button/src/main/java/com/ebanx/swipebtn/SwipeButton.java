@@ -8,11 +8,9 @@ import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -27,7 +25,6 @@ import android.widget.TextView;
 
 /**
  * Created by leandroferreira on 07/03/17.
- * 
  */
 
 public class SwipeButton extends RelativeLayout {
@@ -472,6 +469,12 @@ public class SwipeButton extends RelativeLayout {
             layer.setVisibility(View.VISIBLE);
             layer.setLayoutParams(new RelativeLayout.LayoutParams(
                     (int) (swipeButtonInner.getX() + swipeButtonInner.getWidth() / 3), centerText.getHeight()));
+        }
+    }
+
+    public void setTrailBackground(@NonNull Drawable trailingDrawable) {
+        if (trailEnabled) {
+            layer.setBackground(trailingDrawable);
         }
     }
 
