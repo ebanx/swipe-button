@@ -14,7 +14,6 @@ class MainActivity : AppCompatActivity() {
 
         swipeBtnEnabled.background = ContextCompat.getDrawable(this, R.drawable.shape_button2)
         swipeBtnEnabled.setSlidingButtonBackground(ContextCompat.getDrawable(this, R.drawable.shape_rounded2))
-        swipeBtnEnabled.setInnerTextPadding(10, 10, 10, 10)
 
         swipeBtnEnabled.setOnStateChangeListener { active ->
             Toast.makeText(this@MainActivity, "State: " + active, Toast.LENGTH_SHORT).show()
@@ -24,6 +23,9 @@ class MainActivity : AppCompatActivity() {
                 swipeBtnEnabled.setButtonBackground(ContextCompat.getDrawable(this@MainActivity, R.drawable.shape_button3))
             }
         }
+
+//        swipeBtnDisabled.setDisabledStateNotAnimated()
+        swipeBtnEnabled.setEnabledStateNotAnimated()
 
         swipeNoState.setOnActiveListener { Toast.makeText(this@MainActivity, "Active!", Toast.LENGTH_SHORT).show() }
 

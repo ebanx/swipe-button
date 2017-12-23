@@ -8,10 +8,7 @@ import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
@@ -32,6 +29,8 @@ import android.widget.TextView;
 
 public class SwipeButton extends RelativeLayout {
 
+    private static final int ENABLED = 0;
+    private static final int DISABLED = 1;
 
     private ImageView swipeButtonInner;
     private float initialX;
@@ -45,15 +44,17 @@ public class SwipeButton extends RelativeLayout {
     private OnStateChangeListener onStateChangeListener;
     private OnActiveListener onActiveListener;
 
-    private static final int ENABLED = 0;
-    private static final int DISABLED = 1;
-
     private int collapsedWidth;
     private int collapsedHeight;
 
     private LinearLayout layer;
     private boolean trailEnabled = false;
     private boolean hasActivationState;
+
+    private float buttonLeftPadding;
+    private float buttonTopPadding;
+    private float buttonRightPadding;
+    private float buttonBottomPadding;
 
     public SwipeButton(Context context) {
         super(context);
@@ -234,9 +235,9 @@ public class SwipeButton extends RelativeLayout {
                 layoutParamsButton.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
                 layoutParamsButton.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
 
-                swipeButton.setImageDrawable(enabledDrawable);
+                swipeButtonInner.setImageDrawable(enabledDrawable);
 
-                addView(swipeButton, layoutParamsButton);
+                addView(swipeButtonInner, layoutParamsButton);
 
                 active = true;
             } else {
@@ -245,9 +246,9 @@ public class SwipeButton extends RelativeLayout {
                 layoutParamsButton.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
                 layoutParamsButton.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
 
-                swipeButton.setImageDrawable(disabledDrawable);
+                swipeButtonInner.setImageDrawable(disabledDrawable);
 
-                addView(swipeButton, layoutParamsButton);
+                addView(swipeButtonInner, layoutParamsButton);
 
                 active = false;
             }
@@ -260,21 +261,17 @@ public class SwipeButton extends RelativeLayout {
             Drawable buttonBackground = typedArray.getDrawable(R.styleable.SwipeButton_button_background);
 
             if (buttonBackground != null) {
-                swipeButton.setBackground(buttonBackground);
+                swipeButtonInner.setBackground(buttonBackground);
             } else {
-                swipeButton.setBackground(ContextCompat.getDrawable(context, R.drawable.shape_button));
+                swipeButtonInner.setBackground(ContextCompat.getDrawable(context, R.drawable.shape_button));
             }
 
-            float buttonLeftPadding = typedArray.getDimension(
-                    R.styleable.SwipeButton_button_left_padding, 0);
-            float buttonTopPadding = typedArray.getDimension(
-                    R.styleable.SwipeButton_button_top_padding, 0);
-            float buttonRightPadding = typedArray.getDimension(
-                    R.styleable.SwipeButton_button_right_padding, 0);
-            float buttonBottomPadding = typedArray.getDimension(
-                    R.styleable.SwipeButton_button_bottom_padding, 0);
+            buttonLeftPadding = typedArray.getDimension(R.styleable.SwipeButton_button_left_padding, 0);
+            buttonTopPadding = typedArray.getDimension(R.styleable.SwipeButton_button_top_padding, 0);
+            buttonRightPadding = typedArray.getDimension(R.styleable.SwipeButton_button_right_padding, 0);
+            buttonBottomPadding = typedArray.getDimension(R.styleable.SwipeButton_button_bottom_padding, 0);
 
-            swipeButton.setPadding((int) buttonLeftPadding,
+            swipeButtonInner.setPadding((int) buttonLeftPadding,
                     (int) buttonTopPadding,
                     (int) buttonRightPadding,
                     (int) buttonBottomPadding);
@@ -465,6 +462,36 @@ public class SwipeButton extends RelativeLayout {
 
         animatorSet.playTogether(objectAnimator, widthAnimator);
         animatorSet.start();
+    }
+
+    public void setEnabledStateNotAnimated() {
+        swipeButtonInner.setX(0);
+
+        ViewGroup.LayoutParams params = swipeButtonInner.getLayoutParams();
+        params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        swipeButtonInner.setLayoutParams(params);
+
+        swipeButtonInner.setImageDrawable(enabledDrawable);
+        active = true;
+        centerText.setAlpha(0);
+    }
+
+    public void setDisabledStateNotAnimated() {
+        ViewGroup.LayoutParams params = swipeButtonInner.getLayoutParams();
+        params.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+
+        collapsedWidth = ViewGroup.LayoutParams.WRAP_CONTENT;
+
+        swipeButtonInner.setImageDrawable(disabledDrawable);
+        active = false;
+        centerText.setAlpha(1);
+
+        swipeButtonInner.setPadding((int) buttonLeftPadding,
+                (int) buttonTopPadding,
+                (int) buttonRightPadding,
+                (int) buttonBottomPadding);
+
+        swipeButtonInner.setLayoutParams(params);
     }
 
     private void setTrailingEffect() {

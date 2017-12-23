@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.ebanx.swipebutton"
         minSdkVersion 19
@@ -31,7 +31,7 @@ android {
 }
 
 dependencies {
-    def supportVersion = "26.0.0"
+    def supportVersion = "26.1.0"
 
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
