@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -212,6 +213,12 @@ public class SwipeButton extends RelativeLayout {
                 centerText.setTextSize(textSize);
             } else {
                 centerText.setTextSize(12);
+            }
+
+            boolean textWrap = typedArray.getBoolean(R.styleable.SwipeButton_inner_text_wrap, false);
+            if (!textWrap) {
+                centerText.setMaxLines(1);
+                centerText.setEllipsize(TextUtils.TruncateAt.END);
             }
 
             disabledDrawable = typedArray.getDrawable(R.styleable.SwipeButton_button_image_disabled);
