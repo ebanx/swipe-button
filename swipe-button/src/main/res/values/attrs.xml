@@ -9,6 +9,7 @@
         <attr name="inner_text_top_padding" format="dimension"/>
         <attr name="inner_text_bottom_padding" format="dimension"/>
         <attr name="inner_text_background" format="reference"/>
+        <attr name="inner_text_wrap" format="boolean"/>
         <attr name="button_image_width" format="dimension"/>
         <attr name="button_image_height" format="dimension"/>
         <attr name="button_trail_enabled" format="boolean"/>
