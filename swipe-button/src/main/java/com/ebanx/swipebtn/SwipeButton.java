@@ -9,6 +9,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -403,7 +404,7 @@ public class SwipeButton extends RelativeLayout {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                if (layer!=null) {
+                if (layer != null) {
                     layer.setVisibility(View.GONE);
                 }
             }
@@ -449,7 +450,7 @@ public class SwipeButton extends RelativeLayout {
                 if (onStateChangeListener != null) {
                     onStateChangeListener.onStateChange(active);
                 }
-                if (layer!=null) {
+                if (layer != null) {
                     layer.setVisibility(View.GONE);
                 }
             }
@@ -518,5 +519,19 @@ public class SwipeButton extends RelativeLayout {
 
     public void setCenterTextColor(Context context, int color) {
         centerText.setTextColor(context.getResources().getColor(color));
+    }
+
+    /**
+     * Method for change Typeface for Text on Swipe Control
+     */
+    public void setTypeface(Typeface typeface, int style) {
+        this.centerText.setTypeface(typeface, style);
+    }
+
+    /**
+     * Method for change Typeface for Text on Swipe Control
+     */
+    public void setTypeface(Typeface typeface) {
+        this.centerText.setTypeface(typeface);
     }
 }
