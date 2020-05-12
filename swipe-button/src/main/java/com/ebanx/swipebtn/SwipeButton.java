@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -204,6 +205,11 @@ public class SwipeButton extends RelativeLayout {
             centerText.setText(typedArray.getText(R.styleable.SwipeButton_inner_text));
             centerText.setTextColor(typedArray.getColor(R.styleable.SwipeButton_inner_text_color,
                     Color.WHITE));
+            //Add font family to inner text
+            if (typedArray.hasValue(R.styleable.SwipeButton_font_family)) {
+                int fontId = typedArray.getResourceId(R.styleable.SwipeButton_font_family, -1);
+                centerText.setTypeface(ResourcesCompat.getFont(context, fontId));
+            }
 
             float textSize = DimentionUtils.converPixelsToSp(
                     typedArray.getDimension(R.styleable.SwipeButton_inner_text_size, 0), context);
@@ -403,7 +409,7 @@ public class SwipeButton extends RelativeLayout {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                if (layer!=null) {
+                if (layer != null) {
                     layer.setVisibility(View.GONE);
                 }
             }
@@ -449,7 +455,7 @@ public class SwipeButton extends RelativeLayout {
                 if (onStateChangeListener != null) {
                     onStateChangeListener.onStateChange(active);
                 }
-                if (layer!=null) {
+                if (layer != null) {
                     layer.setVisibility(View.GONE);
                 }
             }

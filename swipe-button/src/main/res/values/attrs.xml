@@ -25,7 +25,7 @@
             <enum name="enabled" value="0"/>
             <enum name="disabled" value="1"/>
         </attr>
-
+        <attr name="font_family" format="integer" />
 
     </declare-styleable>
 </resources>
