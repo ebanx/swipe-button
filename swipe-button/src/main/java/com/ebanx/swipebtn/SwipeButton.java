@@ -56,6 +56,13 @@ public class SwipeButton extends RelativeLayout {
     private float buttonRightPadding;
     private float buttonBottomPadding;
 
+    public EventListener eventListener;
+
+
+    public interface EventListener{
+        public void onActivity(Boolean isStarted);
+    }
+
     public SwipeButton(Context context) {
         super(context);
 
@@ -284,12 +291,21 @@ public class SwipeButton extends RelativeLayout {
         setOnTouchListener(getButtonTouchListener());
     }
 
+    private void invokeEventListener(Boolean isStarted){
+        if(eventListener == null){
+            return;
+        }
+
+        eventListener.onActivity(isStarted);
+    }
+
     private OnTouchListener getButtonTouchListener() {
         return new OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
+                        invokeEventListener(true);
                         return !TouchUtils.isTouchOutsideInitialPosition(event, swipeButtonInner);
                     case MotionEvent.ACTION_MOVE:
                         if (initialX == 0) {
@@ -314,6 +330,7 @@ public class SwipeButton extends RelativeLayout {
 
                         return true;
                     case MotionEvent.ACTION_UP:
+                        invokeEventListener(false);
                         if (active) {
                             collapseButton();
                         } else {
