@@ -332,7 +332,7 @@ public class SwipeButton extends RelativeLayout {
                         return true;
                 }
 
-                return false;
+                return true;
             }
         };
     }
