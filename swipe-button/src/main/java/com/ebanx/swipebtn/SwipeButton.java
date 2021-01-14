@@ -10,7 +10,9 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -139,6 +141,7 @@ public class SwipeButton extends RelativeLayout {
         this.hasActivationState = hasActivationState;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         hasActivationState = true;
 
@@ -204,6 +207,8 @@ public class SwipeButton extends RelativeLayout {
             centerText.setText(typedArray.getText(R.styleable.SwipeButton_inner_text));
             centerText.setTextColor(typedArray.getColor(R.styleable.SwipeButton_inner_text_color,
                     Color.WHITE));
+
+            centerText.setTypeface(typedArray.getFont(R.styleable.SwipeButton_inner_text_font_family)); //adding font family up above API 26
 
             float textSize = DimentionUtils.converPixelsToSp(
                     typedArray.getDimension(R.styleable.SwipeButton_inner_text_size, 0), context);
