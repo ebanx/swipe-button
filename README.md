@@ -12,38 +12,38 @@ Library of an android button activated by swipe.
 
 
 ## Installation
-
-    compile 'com.ebanx:swipe-button:[latestVersion]'
-
+```gradle
+compile 'com.ebanx:swipe-button:[latestVersion]'
+```
 ## How to use
 
 Add the button in your layout file and customize it the way you like it.
-
-    <com.ebanx.swipebtn.SwipeButton
-        android:id="@+id/swipe_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        app:inner_text="SWIPE"
-        app:inner_text_color="@android:color/white"
-        app:inner_text_size="16sp"
-        app:inner_text_top_padding="18dp"
-        app:inner_text_bottom_padding="18dp"
-        app:inner_text_background="@drawable/shape_rounded"
-        app:button_image_height="60dp"
-        app:button_image_width="100dp"
-        app:button_image_disabled="@drawable/ic_lock_open_black_24dp"
-        app:button_image_enabled="@drawable/ic_lock_outline_black_24dp"
-        app:button_left_padding="20dp"
-        app:button_right_padding="20dp"
-        app:button_top_padding="20dp"
-        app:button_bottom_padding="20dp"
-        app:button_background="@drawable/shape_button"
-        app:initial_state="disabled"
-        app:has_activate_state="true"
-        />
-        
+```xml
+<com.ebanx.swipebtn.SwipeButton
+    android:id="@+id/swipe_btn"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    app:inner_text="SWIPE"
+    app:inner_text_color="@android:color/white"
+    app:inner_text_size="16sp"
+    app:inner_text_top_padding="18dp"
+    app:inner_text_bottom_padding="18dp"
+    app:inner_text_background="@drawable/shape_rounded"
+    app:button_image_height="60dp"
+    app:button_image_width="100dp"
+    app:button_image_disabled="@drawable/ic_lock_open_black_24dp"
+    app:button_image_enabled="@drawable/ic_lock_outline_black_24dp"
+    app:button_left_padding="20dp"
+    app:button_right_padding="20dp"
+    app:button_top_padding="20dp"
+    app:button_bottom_padding="20dp"
+    app:button_background="@drawable/shape_button"
+    app:initial_state="disabled"
+    app:has_activate_state="true"
+    />
+```
 ### Setting the sliding button size
 You can set the size of the moving part of the button by changing the app:button_image_width and app:button_image_height properties.
 
@@ -52,24 +52,24 @@ You can set the size of the fixed part of the button by setting the text size of
 
 ### Listening for changes
 You can set a listener for state changes
-
-    SwipeButton enableButton = (SwipeButton) findViewById(R.id.swipe_btn);
-    enableButton.setOnStateChangeListener(new OnStateChangeListener() {
-          @Override 
-          public void onStateChange(boolean active) {
-               Toast.makeText(MainActivity.this, "State: " + active, Toast.LENGTH_SHORT).show();
-          } 
-    }); 
-    
+```java
+SwipeButton enableButton = (SwipeButton) findViewById(R.id.swipe_btn);
+enableButton.setOnStateChangeListener(new OnStateChangeListener() {
+      @Override 
+      public void onStateChange(boolean active) {
+           Toast.makeText(MainActivity.this, "State: " + active, Toast.LENGTH_SHORT).show();
+      } 
+}); 
+```
 Or listen for the activation of the button 
-
-    swipeButtonNoState.setOnActiveListener(new OnActiveListener() {
-                @Override
-                public void onActive() {
-                    Toast.makeText(MainActivity.this, "Active!", Toast.LENGTH_SHORT).show();
-                }
-            });
-
+```java
+swipeButtonNoState.setOnActiveListener(new OnActiveListener() {
+    @Override
+    public void onActive() {
+        Toast.makeText(MainActivity.this, "Active!", Toast.LENGTH_SHORT).show();
+    }
+});
+```
 ## Configure XML
 
  - button_image_width: Change the width of the moving part of the button
